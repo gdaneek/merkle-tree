@@ -3,8 +3,8 @@
  *  @brief   Implementation of the Merkle tree
  *  @author  https://github.com/gdaneek
  *  @date    30.05.2025
- *  @version 1.0-rc
- *  @see <URL>
+ *  @version 1.0-beta
+ *  @see https://github.com/gdaneek/MerkleTree.git
  */
 
 
@@ -14,8 +14,6 @@
 #include "utils.hh"
 
 #include <algorithm>
-#include <type_traits>
-
 
 namespace merkle {
 
@@ -33,43 +31,6 @@ namespace merkle {
             s += (leafs_n += leafs_n & 1);
 
         return s;
-    }
-
-    template<typename>
-    struct is_std_array : std::false_type {};
-
-    template<typename T, std::size_t N>
-    struct is_std_array<std::array<T, N>> : std::true_type {};
-
-    template<typename T>
-    inline constexpr bool is_std_array_v = is_std_array<T>::value;
-
-
-    /**
-     * @brief performs concatenation of two contiguous (in memory) containers
-     * @details
-     *
-     *TODO: выносится в utils
-     *
-     */
-    template<ContiguousContainer T, ContiguousContainer... Args>
-    constexpr auto concat_bytes(Args&&... args) {
-        static_assert(sizeof...(Args) > 0);
-        using first_arg_t = std::decay_t<decltype(std::get<0>(std::forward_as_tuple(args...)))>;
-        if constexpr (is_std_array_v<first_arg_t>) {
-            constexpr size_t SZ = std::tuple_size_v<first_arg_t>;
-            std::array<typename first_arg_t::value_type, SZ * (sizeof...(Args))> out;
-            size_t s{};
-            ((std::copy(std::begin(args), std::end(args), std::begin(out) + s), s += SZ), ...);
-            return out;
-        } else {
-            T out;
-            out.resize((args.size() + ...));
-            size_t s{};
-            ((std::copy(std::begin(args), std::end(args), std::begin(out) + s), s += args.size()), ...);
-
-            return out;
-        }
     }
 
     template <typename T>
@@ -130,13 +91,14 @@ namespace merkle {
          * @note O(N) complexity where N is equal to the number of leaves in the tree
          */
         constexpr size_t find_leaf(auto&& data) const {
+            // TODO: it not constexpr because using reinterpret_cast. need refactor
 
             auto lhash = leaf_hash(data);
             auto leafs_n = reinterpret_cast<const Derived*>(this)->get_leafs_n();
             auto idata = reinterpret_cast<const Derived*>(this)->data();
 
             if constexpr (Iterable<decltype(idata)>) {
-                size_t counter{};   // TODO: тут поправить надо, кидать не индекс, а итератор
+                size_t counter{};   // TODO: return iter, not index
                 for(auto&& x : idata) {
 
                     if(x == lhash)
@@ -189,12 +151,16 @@ namespace merkle {
         }
 
 
+        static constexpr size_t size(const size_t leafs_n) {
+            return calc_tree_size(leafs_n);
+        }
+
         /**
          * @brief function that calculates the number of elements (hashes) for a current Merkle tree
          * @return number of hashes in tree
          */
         constexpr size_t size() const {
-            return calc_tree_size(reinterpret_cast<const Derived*>(this)->get_leafs_n());
+            return this->size(reinterpret_cast<const Derived*>(this)->get_leafs_n());
         }
 
 
@@ -252,7 +218,7 @@ namespace merkle {
      * @tparam HashFunc type of hash function
      * @tparam LEAFS_N  the number of leaves in the tree calculated at the compilation stage
      */
-    template<typename HashFunc, uint64_t LEAFS_N> // TODO: need LEAFS_N == 1 specialization
+    template<typename HashFunc, uint64_t LEAFS_N>
     class FixedSizeTree : public TreeBase<FixedSizeTree<HashFunc, LEAFS_N>, HashFunc> {
 
         using Base = TreeBase<FixedSizeTree<HashFunc, LEAFS_N>, HashFunc>;
@@ -330,7 +296,7 @@ namespace merkle {
             for(size_t t{}, l{}, r{LEAFS_N};l < r-1;t = l, l = r, r += ((r - t) >> 1)) {
                 if(r & 1) m_data[r++] = m_data[r - 1];
                 for(uint64_t i = 0;i < (r-l)>>1; i++)
-                    m_data[r + i] = this->node_hash(m_data.data() + (i<<1) + l, 2); // implicit concat maked
+                    m_data[r + i] = this->node_hash(m_data.data() + (i<<1) + l, 2); // implicit concat
 
             }
 
@@ -433,6 +399,8 @@ namespace merkle {
     constexpr auto make_fs_tree(HashFunc& hash, auto&&... args) {
         return FixedSizeTree<std::remove_cvref_t<HashFunc>, Size>(std::forward<HashFunc>(hash), std::forward<decltype(args)>(args)...);
     }
+
+    // TODO: Dymamic resizeble tree
 
 };
 

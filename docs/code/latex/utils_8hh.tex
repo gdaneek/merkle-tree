@@ -1,0 +1,74 @@
+\hypertarget{utils_8hh}{}\doxysection{utils.\+hh File Reference}
+\label{utils_8hh}\index{utils.hh@{utils.hh}}
+
+
+auxiliary functions for implementing the Merkle tree  
+
+
+{\ttfamily \#include $<$array$>$}\newline
+Include dependency graph for utils.\+hh\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=133pt]{utils_8hh__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{utils_8hh__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr T \mbox{\hyperlink{utils_8hh_a8bb84d2ee92aa38aae1b591076962062}{ilog2}} (T x)
+\begin{DoxyCompactList}\small\item\em fastest implementation of the base 2 integer algorithm \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{utils_8hh_a1df6ff798c14f3d7026a22862fcff4c7}\label{utils_8hh_a1df6ff798c14f3d7026a22862fcff4c7}} 
+{\footnotesize template$<$typename T $>$ }\\constexpr T \mbox{\hyperlink{utils_8hh_a1df6ff798c14f3d7026a22862fcff4c7}{round\+\_\+to\+\_\+even}} (T in)
+\begin{DoxyCompactList}\small\item\em finds nearest (equal or greater) even number \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{utils_8hh_a0ee00b8fdab97b371c10cd6bcdac4e18}\label{utils_8hh_a0ee00b8fdab97b371c10cd6bcdac4e18}} 
+{\footnotesize template$<$typename... Args$>$ }\\constexpr auto \mbox{\hyperlink{utils_8hh_a0ee00b8fdab97b371c10cd6bcdac4e18}{concat\+\_\+bytes}} (Args \&\&... args)
+\begin{DoxyCompactList}\small\item\em performs concatenation of two contiguous (in memory) containers \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+auxiliary functions for implementing the Merkle tree 
+
+\begin{DoxyAuthor}{Author}
+\href{https://github.com/gdaneek}{\texttt{ https\+://github.\+com/gdaneek}} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+30.\+05.\+2025 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0-\/beta 
+\end{DoxyVersion}
+\begin{DoxySeeAlso}{See also}
+\href{https://github.com/gdaneek/MerkleTree.git}{\texttt{ https\+://github.\+com/gdaneek/\+Merkle\+Tree.\+git}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{utils_8hh_a8bb84d2ee92aa38aae1b591076962062}\label{utils_8hh_a8bb84d2ee92aa38aae1b591076962062}} 
+\index{utils.hh@{utils.hh}!ilog2@{ilog2}}
+\index{ilog2@{ilog2}!utils.hh@{utils.hh}}
+\doxysubsubsection{\texorpdfstring{ilog2()}{ilog2()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr T ilog2 (\begin{DoxyParamCaption}\item[{T}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+fastest implementation of the base 2 integer algorithm 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & value for which the logarithm is calculated \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}log2(x)\mbox{]} (whole part of the logarithm) 
+\end{DoxyReturn}

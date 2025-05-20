@@ -14,10 +14,8 @@ add_test(NAME merkle_test COMMAND merkle_test)
 
 target_compile_options(merkle_test PRIVATE
         -std=c++20
-        #-O3
-        #-Ofast
-        #-Os
-        #-march=native
-        #-flto
-        #-fno-rtti
+        -O3
+        -march=native
+        -flto
+        -fno-rtti
     )

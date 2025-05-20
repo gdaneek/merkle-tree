@@ -1,10 +1,10 @@
 /**
- * @file
- * @brief
+ * @file merkle_test.cc
+ * @brief   Tests for Merkle trees
  * @author  https://github.com/gdaneek
  * @date    30.05.2025
- * @version 1.0-rc
- * @see
+ * @version 1.0-beta
+ * @see https://github.com/gdaneek/MerkleTree.git
  */
 
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
@@ -32,12 +32,7 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
     template<typename T>
     auto operator+(T&& lhs, T&& rhs) {
-        return merkle::concat_bytes<std::remove_cvref_t<T>>(lhs, rhs);
-    }
-
-    std::ostream& operator<<(std::ostream& os, const std::array<uint8_t, sizeof(uint64_t)>& arg) {
-        os << *reinterpret_cast<uint64_t const * const >(arg.data());
-        return os;
+        return concat_bytes(lhs, rhs);
     }
 
 

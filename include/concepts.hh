@@ -3,8 +3,8 @@
  *  @brief   Custom concepts for implementing the Merkle tree
  *  @author  https://github.com/gdaneek
  *  @date    30.05.2025
- *  @version 1.0-rc
- *  @see <URL>
+ *  @version 1.0-beta
+ *  @see https://github.com/gdaneek/MerkleTree.git
  */
 
 

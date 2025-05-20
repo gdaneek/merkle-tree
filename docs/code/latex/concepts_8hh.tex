@@ -1,0 +1,116 @@
+\hypertarget{concepts_8hh}{}\doxysection{concepts.\+hh File Reference}
+\label{concepts_8hh}\index{concepts.hh@{concepts.hh}}
+
+
+Custom concepts for implementing the Merkle tree.  
+
+
+{\ttfamily \#include $<$concepts$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+Include dependency graph for concepts.\+hh\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{concepts_8hh__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{concepts_8hh__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\concept {\bfseries Has\+Data\+Method}
+\item 
+{\footnotesize template$<$typename T $>$ }\\concept {\bfseries Contiguous\+Container}
+\item 
+{\footnotesize template$<$typename T $>$ }\\concept {\bfseries Iterable}
+\item 
+{\footnotesize template$<$typename T $>$ }\\concept {\bfseries Indexable}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Custom concepts for implementing the Merkle tree. 
+
+\begin{DoxyAuthor}{Author}
+\href{https://github.com/gdaneek}{\texttt{ https\+://github.\+com/gdaneek}} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+30.\+05.\+2025 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0-\/beta 
+\end{DoxyVersion}
+\begin{DoxySeeAlso}{See also}
+\href{https://github.com/gdaneek/MerkleTree.git}{\texttt{ https\+://github.\+com/gdaneek/\+Merkle\+Tree.\+git}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{concepts_8hh_ad6c3fc430f7e150c1dab8837755fd641}\label{concepts_8hh_ad6c3fc430f7e150c1dab8837755fd641}} 
+\index{concepts.hh@{concepts.hh}!ContiguousContainer@{ContiguousContainer}}
+\index{ContiguousContainer@{ContiguousContainer}!concepts.hh@{concepts.hh}}
+\doxysubsubsection{\texorpdfstring{ContiguousContainer}{ContiguousContainer}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+concept Contiguous\+Container}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= requires(T t) \{}
+\DoxyCodeLine{    \{ t.size() \} -\/> std::integral;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{concepts_8hh_a912ad7410c5b9e1da3428cf6a251553e}\label{concepts_8hh_a912ad7410c5b9e1da3428cf6a251553e}} 
+\index{concepts.hh@{concepts.hh}!HasDataMethod@{HasDataMethod}}
+\index{HasDataMethod@{HasDataMethod}!concepts.hh@{concepts.hh}}
+\doxysubsubsection{\texorpdfstring{HasDataMethod}{HasDataMethod}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+concept Has\+Data\+Method}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= requires(T t) \{}
+\DoxyCodeLine{    \{ t.data() \} -\/> std::convertible\_to<const unsigned char*>;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{concepts_8hh_a27d07d7b5e214814f31f4b8191e7a626}\label{concepts_8hh_a27d07d7b5e214814f31f4b8191e7a626}} 
+\index{concepts.hh@{concepts.hh}!Indexable@{Indexable}}
+\index{Indexable@{Indexable}!concepts.hh@{concepts.hh}}
+\doxysubsubsection{\texorpdfstring{Indexable}{Indexable}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+concept Indexable}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= requires(T t, \textcolor{keywordtype}{size\_t} i) \{}
+\DoxyCodeLine{    \{ t[i] \};}
+\DoxyCodeLine{    }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{concepts_8hh_a953b774b4197a74820f83b066748496a}\label{concepts_8hh_a953b774b4197a74820f83b066748496a}} 
+\index{concepts.hh@{concepts.hh}!Iterable@{Iterable}}
+\index{Iterable@{Iterable}!concepts.hh@{concepts.hh}}
+\doxysubsubsection{\texorpdfstring{Iterable}{Iterable}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+concept Iterable}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= requires(T t) \{}
+\DoxyCodeLine{    \{ std::begin(t) \} -\/> std::input\_iterator;}
+\DoxyCodeLine{    \{ std::end(t) \} -\/> std::sentinel\_for<decltype(std::begin(t))>;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

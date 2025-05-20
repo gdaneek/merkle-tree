@@ -1,0 +1,224 @@
+\hypertarget{classmerkle_1_1FixedSizeTree}{}\doxysection{merkle\+::Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+N $>$ Class Template Reference}
+\label{classmerkle_1_1FixedSizeTree}\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+
+
+General class of Merkle trees calculated at the compilation stage and trees with a size calculated at the compilation stage.  
+
+
+
+
+{\ttfamily \#include $<$merkle.\+hpp$>$}
+
+
+
+Inheritance diagram for merkle\+::Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+N $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classmerkle_1_1FixedSizeTree__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for merkle\+::Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+N $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classmerkle_1_1FixedSizeTree__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a89c86b13f0acffb2f4f3eb9ff244b654}{Fixed\+Size\+Tree}} (const Hash\+Func \&\+\_\+hash, auto \&\&\+\_\+data)
+\begin{DoxyCompactList}\small\item\em constructor for immediate creation of a tree from a data container \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_ac636e92e18cb5caf8083387fc5b32095}\label{classmerkle_1_1FixedSizeTree_ac636e92e18cb5caf8083387fc5b32095}} 
+constexpr {\bfseries Fixed\+Size\+Tree} (const Hash\+Func \&\+\_\+hash)
+\item 
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a0352f1ef9668796eacc3b77af065b0bf}{build}} (auto \&\&ccont)
+\begin{DoxyCompactList}\small\item\em build a tree based on a data container \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a10e1e02fd706f8fed5ec947d1af672fb}{get\+\_\+proof}} (auto \&\&\mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}{data}}) const
+\begin{DoxyCompactList}\small\item\em creates a proof of inclusion of some data in the tree \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a999a247f7bc68fd273a5f3d46be6f016}{root}} () const
+\begin{DoxyCompactList}\small\item\em root of the Merkle tree \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}{data}} () const
+\begin{DoxyCompactList}\small\item\em returns a pointer (or iterator) to the hash tree \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a49fe450451749a2adbbd68676dc57b20}{get\+\_\+leafs\+\_\+n}} ()
+\begin{DoxyCompactList}\small\item\em current num of leaves in the tree \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a436822269d258b7a0628d7648c633d2d}{get\+\_\+layer}} (const size\+\_\+t idx) const
+\begin{DoxyCompactList}\small\item\em finds a pointer to a tree layer by index and its size \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_aa7518759f2796b15000fa17bad945ff7}\label{classmerkle_1_1FixedSizeTree_aa7518759f2796b15000fa17bad945ff7}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$ \&tree)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Hash\+Func, uint64\+\_\+t LEAFS\+\_\+N$>$\newline
+class merkle\+::\+Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+\+N $>$}
+
+General class of Merkle trees calculated at the compilation stage and trees with a size calculated at the compilation stage. 
+
+built on the basis of std\+::array to ensure maximum performance. The elements of each layer are laid out in a continuous section of memory, starting with N leaves, then N / 2 nodes, etc. Due to this stacking, an implicit concatenation of neighboring hashes occurs, and when calculating a node of the next level, exactly 0 operations are spent on adding its child elements. By default, preference is given to the construction algorithm with copying the last node on layers with an odd size, since the construction algorithm is much simpler for it, and the additional memory consumption is insignificant. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Hash\+Func} & type of hash function \\
+\hline
+{\em LEAFS\+\_\+N} & the number of leaves in the tree calculated at the compilation stage \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a89c86b13f0acffb2f4f3eb9ff244b654}\label{classmerkle_1_1FixedSizeTree_a89c86b13f0acffb2f4f3eb9ff244b654}} 
+\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!FixedSizeTree@{FixedSizeTree}}
+\index{FixedSizeTree@{FixedSizeTree}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\doxysubsubsection{\texorpdfstring{FixedSizeTree()}{FixedSizeTree()}}
+{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
+constexpr \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::\mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{Fixed\+Size\+Tree}} (\begin{DoxyParamCaption}\item[{const Hash\+Func \&}]{\+\_\+hash,  }\item[{auto \&\&}]{\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+constructor for immediate creation of a tree from a data container 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+hash} & link to the hash function that will be used to build the tree \\
+\hline
+{\em \+\_\+data} & data container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+the num of elements in the container should be equal to LEAFS\+\_\+N or LEAFS\+\_\+\+N-\/1 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+you can use containers with fewer than LEAFS\+\_\+N elements, but in this case some methods will give the wrong answer. Using a container with a size larger than LEAFS\+\_\+N leads to the building of a tree based only on the first LEAFS\+\_\+N elements. 
+\end{DoxyWarning}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a0352f1ef9668796eacc3b77af065b0bf}\label{classmerkle_1_1FixedSizeTree_a0352f1ef9668796eacc3b77af065b0bf}} 
+\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!build@{build}}
+\index{build@{build}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\doxysubsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::build (\begin{DoxyParamCaption}\item[{auto \&\&}]{ccont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+build a tree based on a data container 
+
+... 
+\begin{DoxyParams}{Parameters}
+{\em ccont} & data container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this object 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+O(\+N) complexity where N is equal to the number of hashes in the tree 
+\end{DoxyNote}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}\label{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}} 
+\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!data@{data}}
+\index{data@{data}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+returns a pointer (or iterator) to the hash tree 
+
+\begin{DoxyReturn}{Returns}
+pointer to the beginning of the tree (the leftmost element of the lower layer). The pointer is traversed from left to right from bottom to top. total number of hashes available 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a436822269d258b7a0628d7648c633d2d}\label{classmerkle_1_1FixedSizeTree_a436822269d258b7a0628d7648c633d2d}} 
+\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!get\_layer@{get\_layer}}
+\index{get\_layer@{get\_layer}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\doxysubsubsection{\texorpdfstring{get\_layer()}{get\_layer()}}
+{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::get\+\_\+layer (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [protected]}}
+
+
+
+finds a pointer to a tree layer by index and its size 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & layer index (0 for the root, 1..N for the following) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the beginning of the layer and its length (num of hashes) 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+index of the last layer is equal to the height value O(log\+N) complexity where N is equal to the number of hashes in the tree 
+\end{DoxyNote}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a49fe450451749a2adbbd68676dc57b20}\label{classmerkle_1_1FixedSizeTree_a49fe450451749a2adbbd68676dc57b20}} 
+\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!get\_leafs\_n@{get\_leafs\_n}}
+\index{get\_leafs\_n@{get\_leafs\_n}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\doxysubsubsection{\texorpdfstring{get\_leafs\_n()}{get\_leafs\_n()}}
+{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
+static constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::get\+\_\+leafs\+\_\+n (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+current num of leaves in the tree 
+
+\begin{DoxyNote}{Note}
+For fixed size class of trees, the function can be static, since it depends only on the class parameters, but not on a specific object 
+\end{DoxyNote}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a10e1e02fd706f8fed5ec947d1af672fb}\label{classmerkle_1_1FixedSizeTree_a10e1e02fd706f8fed5ec947d1af672fb}} 
+\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!get\_proof@{get\_proof}}
+\index{get\_proof@{get\_proof}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\doxysubsubsection{\texorpdfstring{get\_proof()}{get\_proof()}}
+{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::get\+\_\+proof (\begin{DoxyParamCaption}\item[{auto \&\&}]{data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+creates a proof of inclusion of some data in the tree 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & input for which the proof is being created \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pair from the hash of the leaf and an array of hashes from all levels, proving the inclusion of data in the tree 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+if the data was not used to build the tree, an object consisting of default values will be returned. For the data used in the construction, the first argument will always match the hash of the desired tree leaf. 
+
+O(log\+N) complexity where N is equal to the number of hashes in the tree 
+\end{DoxyNote}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a999a247f7bc68fd273a5f3d46be6f016}\label{classmerkle_1_1FixedSizeTree_a999a247f7bc68fd273a5f3d46be6f016}} 
+\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!root@{root}}
+\index{root@{root}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\doxysubsubsection{\texorpdfstring{root()}{root()}}
+{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+root of the Merkle tree 
+
+\begin{DoxyReturn}{Returns}
+last (topmost) hash 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{merkle_8hpp}{merkle.\+hpp}}\end{DoxyCompactItemize}

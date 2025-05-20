@@ -1,0 +1,10 @@
+<map id="merkle.hpp" name="merkle.hpp">
+<area shape="rect" id="node1" title="Implementation of the Merkle tree." alt="" coords="280,5,376,32"/>
+<area shape="rect" id="node2" href="$concepts_8hh.html" title="Custom concepts for implementing the Merkle tree." alt="" coords="147,80,247,107"/>
+<area shape="rect" id="node6" href="$utils_8hh.html" title="auxiliary functions for implementing the Merkle tree" alt="" coords="293,80,363,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="388,80,473,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,155,85,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="110,155,202,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="226,155,297,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="321,155,377,181"/>
+</map>
