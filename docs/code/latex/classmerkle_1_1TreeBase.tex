@@ -12,7 +12,7 @@ a base template class for building Merkle trees based on CRTP
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-constexpr auto \mbox{\hyperlink{classmerkle_1_1TreeBase_ac6b5c1e3375233161d4e19654e6b5c4c}{hash}} (Contiguous\+Container auto \&\&ccont) const
+constexpr auto \mbox{\hyperlink{classmerkle_1_1TreeBase_ac6b5c1e3375233161d4e19654e6b5c4c}{hash}} (\mbox{\hyperlink{concepts_8hh_ad6c3fc430f7e150c1dab8837755fd641}{Contiguous\+Container}} auto \&\&ccont) const
 \begin{DoxyCompactList}\small\item\em hash function wrapper that allows you to call it for any continuous container \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classmerkle_1_1TreeBase_af3dcd283a84eb8bb98021331b0120203}{height}} () const
 \begin{DoxyCompactList}\small\item\em function that calculates the height of a current Merkle tree \end{DoxyCompactList}\item 
@@ -38,8 +38,8 @@ static constexpr size\+\_\+t {\bfseries size} (const size\+\_\+t leafs\+\_\+n)
 \doxysubsection*{Protected Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classmerkle_1_1TreeBase_a4fb649690d4181f60e353a0171fafb6b}\label{classmerkle_1_1TreeBase_a4fb649690d4181f60e353a0171fafb6b}} 
-using \mbox{\hyperlink{classmerkle_1_1TreeBase_a4fb649690d4181f60e353a0171fafb6b}{hash\+\_\+t}} = typename std\+::invoke\+\_\+result\+\_\+t$<$ Hash\+Func, const uint8\+\_\+t $\ast$, size\+\_\+t $>$
+\mbox{\Hypertarget{classmerkle_1_1TreeBase_a83a309d21359cb71ee13ded3ee0e21d4}\label{classmerkle_1_1TreeBase_a83a309d21359cb71ee13ded3ee0e21d4}} 
+using \mbox{\hyperlink{classmerkle_1_1TreeBase_a83a309d21359cb71ee13ded3ee0e21d4}{hash\+\_\+t}} = typename std\+::invoke\+\_\+result\+\_\+t$<$ Hash\+Func, uint8\+\_\+t $\ast$, size\+\_\+t $>$
 \begin{DoxyCompactList}\small\item\em hash function return data type \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -48,7 +48,7 @@ using \mbox{\hyperlink{classmerkle_1_1TreeBase_a4fb649690d4181f60e353a0171fafb6b
 \begin{DoxyCompactList}\small\item\em calls a hashing function for objects of any type that are continuously located in memory \end{DoxyCompactList}\item 
 constexpr \mbox{\hyperlink{classmerkle_1_1TreeBase_a2261c2ac7d994e7009c77317e262cb86}{Tree\+Base}} (const Hash\+Func \&h)
 \begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
-constexpr size\+\_\+t \mbox{\hyperlink{classmerkle_1_1TreeBase_a9ebe74a40b39ee126cec83a837e3d888}{find\+\_\+leaf}} (auto \&\&data) const
+constexpr auto \mbox{\hyperlink{classmerkle_1_1TreeBase_a800301fc082aab9032cdff7cee4ce701}{find\+\_\+leaf}} (auto \&\&data) const
 \begin{DoxyCompactList}\small\item\em a function that finds a leaf of the Merkle tree in the hash container corresponding to the input data \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -58,16 +58,13 @@ class merkle\+::\+Tree\+Base$<$ Derived, Hash\+Func $>$}
 
 a base template class for building Merkle trees based on CRTP 
 
-Class defines the required interface using concepts and provides auxiliary methods for calculating the size, height, leaf search, etc..., through inheritance. All trees inheriting this automatically have some principles for ensuring security, such as double hashing for leaves (protection against Second Preimage Attack) and two generalized algorithms for building a tree (todo status). 
+Class defines the required interface using concepts and provides auxiliary methods for calculating the size, height, leaf search, etc..., through inheritance. All trees inheriting this automatically have some principles for ensuring security, such as double hashing with salt (protection against Second Preimage / Length Extension Attacks if the hash function is based on Merkle–\+Damgard) and two generalized algorithms for building a tree (todo status). 
 \begin{DoxyTemplParams}{Template Parameters}
 {\em Derived} & concrete implementation of the Merkle tree \\
 \hline
-{\em Hash\+Func} & type of hash function\\
+{\em Hash\+Func} & type of hash function \\
 \hline
 \end{DoxyTemplParams}
-\begin{DoxyNote}{Note}
-uses double leaf hashing to protect against Second Preimage Attacks 
-\end{DoxyNote}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -90,12 +87,12 @@ default constructor
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classmerkle_1_1TreeBase_a9ebe74a40b39ee126cec83a837e3d888}\label{classmerkle_1_1TreeBase_a9ebe74a40b39ee126cec83a837e3d888}} 
+\mbox{\Hypertarget{classmerkle_1_1TreeBase_a800301fc082aab9032cdff7cee4ce701}\label{classmerkle_1_1TreeBase_a800301fc082aab9032cdff7cee4ce701}} 
 \index{merkle::TreeBase$<$ Derived, HashFunc $>$@{merkle::TreeBase$<$ Derived, HashFunc $>$}!find\_leaf@{find\_leaf}}
 \index{find\_leaf@{find\_leaf}!merkle::TreeBase$<$ Derived, HashFunc $>$@{merkle::TreeBase$<$ Derived, HashFunc $>$}}
 \doxysubsubsection{\texorpdfstring{find\_leaf()}{find\_leaf()}}
 {\footnotesize\ttfamily template$<$typename Derived , typename Hash\+Func $>$ \\
-constexpr size\+\_\+t \mbox{\hyperlink{classmerkle_1_1TreeBase}{merkle\+::\+Tree\+Base}}$<$ Derived, Hash\+Func $>$\+::find\+\_\+leaf (\begin{DoxyParamCaption}\item[{auto \&\&}]{data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [protected]}}
+constexpr auto \mbox{\hyperlink{classmerkle_1_1TreeBase}{merkle\+::\+Tree\+Base}}$<$ Derived, Hash\+Func $>$\+::find\+\_\+leaf (\begin{DoxyParamCaption}\item[{auto \&\&}]{data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [protected]}}
 
 
 
@@ -119,7 +116,7 @@ O(\+N) complexity where N is equal to the number of leaves in the tree
 \index{hash@{hash}!merkle::TreeBase$<$ Derived, HashFunc $>$@{merkle::TreeBase$<$ Derived, HashFunc $>$}}
 \doxysubsubsection{\texorpdfstring{hash()}{hash()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Derived , typename Hash\+Func $>$ \\
-constexpr auto \mbox{\hyperlink{classmerkle_1_1TreeBase}{merkle\+::\+Tree\+Base}}$<$ Derived, Hash\+Func $>$\+::hash (\begin{DoxyParamCaption}\item[{Contiguous\+Container auto \&\&}]{ccont }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+constexpr auto \mbox{\hyperlink{classmerkle_1_1TreeBase}{merkle\+::\+Tree\+Base}}$<$ Derived, Hash\+Func $>$\+::hash (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{concepts_8hh_ad6c3fc430f7e150c1dab8837755fd641}{Contiguous\+Container}} auto \&\&}]{ccont }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
 
 
 
@@ -210,7 +207,7 @@ constexpr auto \mbox{\hyperlink{classmerkle_1_1TreeBase}{merkle\+::\+Tree\+Base}
 
 calculates the hash of a tree leaf 
 
-uses double leaf hashing to protect against Second Preimage Attacks 
+uses double leaf hashing to protect against Length Extension Attack 
 \begin{DoxyParams}{Parameters}
 {\em args} & parameters for calling the hash function (see hash method overloads) \\
 \hline

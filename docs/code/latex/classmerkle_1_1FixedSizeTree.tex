@@ -11,8 +11,7 @@ General class of Merkle trees calculated at the compilation stage and trees with
 
 
 
-Inheritance diagram for merkle\+::Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+N $>$\+:
-\nopagebreak
+Inheritance diagram for merkle\+::Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+N $>$\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for merkle\+::Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+N 
 \end{figure}
 
 
-Collaboration diagram for merkle\+::Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+N $>$\+:
-\nopagebreak
+Collaboration diagram for merkle\+::Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+N $>$\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -41,6 +39,8 @@ constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a0352f1ef9668796eac
 \begin{DoxyCompactList}\small\item\em build a tree based on a data container \end{DoxyCompactList}\item 
 constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a10e1e02fd706f8fed5ec947d1af672fb}{get\+\_\+proof}} (auto \&\&\mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}{data}}) const
 \begin{DoxyCompactList}\small\item\em creates a proof of inclusion of some data in the tree \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a5b81af883488920f0160c465595ae9a0}{verify\+\_\+proof}} (auto \&\&\mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}{data}}, auto \&\&proof)
+\item 
 constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a999a247f7bc68fd273a5f3d46be6f016}{root}} () const
 \begin{DoxyCompactList}\small\item\em root of the Merkle tree \end{DoxyCompactList}\item 
 constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}{data}} () const
@@ -118,7 +118,7 @@ constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\
 
 build a tree based on a data container 
 
-... 
+
 \begin{DoxyParams}{Parameters}
 {\em ccont} & data container \\
 \hline
@@ -217,6 +217,16 @@ root of the Merkle tree
 \begin{DoxyReturn}{Returns}
 last (topmost) hash 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a5b81af883488920f0160c465595ae9a0}\label{classmerkle_1_1FixedSizeTree_a5b81af883488920f0160c465595ae9a0}} 
+\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!verify\_proof@{verify\_proof}}
+\index{verify\_proof@{verify\_proof}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\doxysubsubsection{\texorpdfstring{verify\_proof()}{verify\_proof()}}
+{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::verify\+\_\+proof (\begin{DoxyParamCaption}\item[{auto \&\&}]{data,  }\item[{auto \&\&}]{proof }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+... \begin{DoxyNote}{Note}
+O(log\+N) complexity where N is equal to the number of hashes in the tree 
+\end{DoxyNote}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

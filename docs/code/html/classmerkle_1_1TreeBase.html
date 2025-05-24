@@ -83,7 +83,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac6b5c1e3375233161d4e19654e6b5c4c"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#ac6b5c1e3375233161d4e19654e6b5c4c">hash</a> (ContiguousContainer auto &amp;&amp;ccont) const</td></tr>
+<tr class="memitem:ac6b5c1e3375233161d4e19654e6b5c4c"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#ac6b5c1e3375233161d4e19654e6b5c4c">hash</a> (<a class="el" href="concepts_8hh.html#ad6c3fc430f7e150c1dab8837755fd641">ContiguousContainer</a> auto &amp;&amp;ccont) const</td></tr>
 <tr class="memdesc:ac6b5c1e3375233161d4e19654e6b5c4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">hash function wrapper that allows you to call it for any continuous container  <a href="classmerkle_1_1TreeBase.html#ac6b5c1e3375233161d4e19654e6b5c4c">More...</a><br /></td></tr>
 <tr class="separator:ac6b5c1e3375233161d4e19654e6b5c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3dcd283a84eb8bb98021331b0120203"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#af3dcd283a84eb8bb98021331b0120203">height</a> () const</td></tr>
@@ -117,10 +117,10 @@ static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>si
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:a4fb649690d4181f60e353a0171fafb6b"><td class="memItemLeft" align="right" valign="top"><a id="a4fb649690d4181f60e353a0171fafb6b"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#a4fb649690d4181f60e353a0171fafb6b">hash_t</a> = typename std::invoke_result_t&lt; HashFunc, const uint8_t *, size_t &gt;</td></tr>
-<tr class="memdesc:a4fb649690d4181f60e353a0171fafb6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">hash function return data type <br /></td></tr>
-<tr class="separator:a4fb649690d4181f60e353a0171fafb6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83a309d21359cb71ee13ded3ee0e21d4"><td class="memItemLeft" align="right" valign="top"><a id="a83a309d21359cb71ee13ded3ee0e21d4"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#a83a309d21359cb71ee13ded3ee0e21d4">hash_t</a> = typename std::invoke_result_t&lt; HashFunc, uint8_t *, size_t &gt;</td></tr>
+<tr class="memdesc:a83a309d21359cb71ee13ded3ee0e21d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">hash function return data type <br /></td></tr>
+<tr class="separator:a83a309d21359cb71ee13ded3ee0e21d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -131,23 +131,22 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a2261c2ac7d994e7009c77317e262cb86"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#a2261c2ac7d994e7009c77317e262cb86">TreeBase</a> (const HashFunc &amp;h)</td></tr>
 <tr class="memdesc:a2261c2ac7d994e7009c77317e262cb86"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor  <a href="classmerkle_1_1TreeBase.html#a2261c2ac7d994e7009c77317e262cb86">More...</a><br /></td></tr>
 <tr class="separator:a2261c2ac7d994e7009c77317e262cb86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ebe74a40b39ee126cec83a837e3d888"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#a9ebe74a40b39ee126cec83a837e3d888">find_leaf</a> (auto &amp;&amp;data) const</td></tr>
-<tr class="memdesc:a9ebe74a40b39ee126cec83a837e3d888"><td class="mdescLeft">&#160;</td><td class="mdescRight">a function that finds a leaf of the Merkle tree in the hash container corresponding to the input data  <a href="classmerkle_1_1TreeBase.html#a9ebe74a40b39ee126cec83a837e3d888">More...</a><br /></td></tr>
-<tr class="separator:a9ebe74a40b39ee126cec83a837e3d888"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a800301fc082aab9032cdff7cee4ce701"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#a800301fc082aab9032cdff7cee4ce701">find_leaf</a> (auto &amp;&amp;data) const</td></tr>
+<tr class="memdesc:a800301fc082aab9032cdff7cee4ce701"><td class="mdescLeft">&#160;</td><td class="mdescRight">a function that finds a leaf of the Merkle tree in the hash container corresponding to the input data  <a href="classmerkle_1_1TreeBase.html#a800301fc082aab9032cdff7cee4ce701">More...</a><br /></td></tr>
+<tr class="separator:a800301fc082aab9032cdff7cee4ce701"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename Derived, typename HashFunc&gt;<br />
 class merkle::TreeBase&lt; Derived, HashFunc &gt;</h3>
 
 <p>a base template class for building Merkle trees based on CRTP </p>
-<p>Class defines the required interface using concepts and provides auxiliary methods for calculating the size, height, leaf search, etc..., through inheritance. All trees inheriting this automatically have some principles for ensuring security, such as double hashing for leaves (protection against Second Preimage Attack) and two generalized algorithms for building a tree (todo status). </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+<p>Class defines the required interface using concepts and provides auxiliary methods for calculating the size, height, leaf search, etc..., through inheritance. All trees inheriting this automatically have some principles for ensuring security, such as double hashing with salt (protection against Second Preimage / Length Extension Attacks if the hash function is based on Merkle–Damgard) and two generalized algorithms for building a tree (todo status). </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Derived</td><td>concrete implementation of the Merkle tree </td></tr>
-    <tr><td class="paramname">HashFunc</td><td>type of hash function</td></tr>
+    <tr><td class="paramname">HashFunc</td><td>type of hash function </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>uses double leaf hashing to protect against Second Preimage Attacks </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2261c2ac7d994e7009c77317e262cb86"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2261c2ac7d994e7009c77317e262cb86">&#9670;&nbsp;</a></span>TreeBase()</h2>
@@ -186,8 +185,8 @@ template&lt;typename Derived , typename HashFunc &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9ebe74a40b39ee126cec83a837e3d888"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ebe74a40b39ee126cec83a837e3d888">&#9670;&nbsp;</a></span>find_leaf()</h2>
+<a id="a800301fc082aab9032cdff7cee4ce701"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a800301fc082aab9032cdff7cee4ce701">&#9670;&nbsp;</a></span>find_leaf()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,7 +197,7 @@ template&lt;typename Derived , typename HashFunc &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr size_t <a class="el" href="classmerkle_1_1TreeBase.html">merkle::TreeBase</a>&lt; Derived, HashFunc &gt;::find_leaf </td>
+          <td class="memname">constexpr auto <a class="el" href="classmerkle_1_1TreeBase.html">merkle::TreeBase</a>&lt; Derived, HashFunc &gt;::find_leaf </td>
           <td>(</td>
           <td class="paramtype">auto &amp;&amp;&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
@@ -240,7 +239,7 @@ template&lt;typename Derived , typename HashFunc &gt; </div>
         <tr>
           <td class="memname">constexpr auto <a class="el" href="classmerkle_1_1TreeBase.html">merkle::TreeBase</a>&lt; Derived, HashFunc &gt;::hash </td>
           <td>(</td>
-          <td class="paramtype">ContiguousContainer auto &amp;&amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="concepts_8hh.html#ad6c3fc430f7e150c1dab8837755fd641">ContiguousContainer</a> auto &amp;&amp;&#160;</td>
           <td class="paramname"><em>ccont</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -415,7 +414,7 @@ template&lt;typename Derived , typename HashFunc &gt; </div>
 </div><div class="memdoc">
 
 <p>calculates the hash of a tree leaf </p>
-<p>uses double leaf hashing to protect against Second Preimage Attacks </p><dl class="params"><dt>Parameters</dt><dd>
+<p>uses double leaf hashing to protect against Length Extension Attack </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">args</td><td>parameters for calling the hash function (see hash method overloads) </td></tr>
   </table>

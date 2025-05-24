@@ -113,6 +113,8 @@ constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>FixedSizeTree</b
 <tr class="memitem:a10e1e02fd706f8fed5ec947d1af672fb"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1FixedSizeTree.html#a10e1e02fd706f8fed5ec947d1af672fb">get_proof</a> (auto &amp;&amp;<a class="el" href="classmerkle_1_1FixedSizeTree.html#a975bbbd0c481de5af53ad841f4823aa5">data</a>) const</td></tr>
 <tr class="memdesc:a10e1e02fd706f8fed5ec947d1af672fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a proof of inclusion of some data in the tree  <a href="classmerkle_1_1FixedSizeTree.html#a10e1e02fd706f8fed5ec947d1af672fb">More...</a><br /></td></tr>
 <tr class="separator:a10e1e02fd706f8fed5ec947d1af672fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b81af883488920f0160c465595ae9a0"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1FixedSizeTree.html#a5b81af883488920f0160c465595ae9a0">verify_proof</a> (auto &amp;&amp;<a class="el" href="classmerkle_1_1FixedSizeTree.html#a975bbbd0c481de5af53ad841f4823aa5">data</a>, auto &amp;&amp;proof)</td></tr>
+<tr class="separator:a5b81af883488920f0160c465595ae9a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a999a247f7bc68fd273a5f3d46be6f016"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1FixedSizeTree.html#a999a247f7bc68fd273a5f3d46be6f016">root</a> () const</td></tr>
 <tr class="memdesc:a999a247f7bc68fd273a5f3d46be6f016"><td class="mdescLeft">&#160;</td><td class="mdescRight">root of the Merkle tree  <a href="classmerkle_1_1FixedSizeTree.html#a999a247f7bc68fd273a5f3d46be6f016">More...</a><br /></td></tr>
 <tr class="separator:a999a247f7bc68fd273a5f3d46be6f016"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,7 +122,7 @@ constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>FixedSizeTree</b
 <tr class="memdesc:a975bbbd0c481de5af53ad841f4823aa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a pointer (or iterator) to the hash tree  <a href="classmerkle_1_1FixedSizeTree.html#a975bbbd0c481de5af53ad841f4823aa5">More...</a><br /></td></tr>
 <tr class="separator:a975bbbd0c481de5af53ad841f4823aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classmerkle_1_1TreeBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classmerkle_1_1TreeBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classmerkle_1_1TreeBase.html">merkle::TreeBase&lt; FixedSizeTree&lt; HashFunc, LEAFS_N &gt;, HashFunc &gt;</a></td></tr>
-<tr class="memitem:ac6b5c1e3375233161d4e19654e6b5c4c inherit pub_methods_classmerkle_1_1TreeBase"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#ac6b5c1e3375233161d4e19654e6b5c4c">hash</a> (ContiguousContainer auto &amp;&amp;ccont) const</td></tr>
+<tr class="memitem:ac6b5c1e3375233161d4e19654e6b5c4c inherit pub_methods_classmerkle_1_1TreeBase"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#ac6b5c1e3375233161d4e19654e6b5c4c">hash</a> (<a class="el" href="concepts_8hh.html#ad6c3fc430f7e150c1dab8837755fd641">ContiguousContainer</a> auto &amp;&amp;ccont) const</td></tr>
 <tr class="memdesc:ac6b5c1e3375233161d4e19654e6b5c4c inherit pub_methods_classmerkle_1_1TreeBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">hash function wrapper that allows you to call it for any continuous container  <a href="classmerkle_1_1TreeBase.html#ac6b5c1e3375233161d4e19654e6b5c4c">More...</a><br /></td></tr>
 <tr class="separator:ac6b5c1e3375233161d4e19654e6b5c4c inherit pub_methods_classmerkle_1_1TreeBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3dcd283a84eb8bb98021331b0120203 inherit pub_methods_classmerkle_1_1TreeBase"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#af3dcd283a84eb8bb98021331b0120203">height</a> () const</td></tr>
@@ -168,9 +170,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a2261c2ac7d994e7009c77317e262cb86 inherit pro_methods_classmerkle_1_1TreeBase"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#a2261c2ac7d994e7009c77317e262cb86">TreeBase</a> (const HashFunc &amp;h)</td></tr>
 <tr class="memdesc:a2261c2ac7d994e7009c77317e262cb86 inherit pro_methods_classmerkle_1_1TreeBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor  <a href="classmerkle_1_1TreeBase.html#a2261c2ac7d994e7009c77317e262cb86">More...</a><br /></td></tr>
 <tr class="separator:a2261c2ac7d994e7009c77317e262cb86 inherit pro_methods_classmerkle_1_1TreeBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ebe74a40b39ee126cec83a837e3d888 inherit pro_methods_classmerkle_1_1TreeBase"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#a9ebe74a40b39ee126cec83a837e3d888">find_leaf</a> (auto &amp;&amp;data) const</td></tr>
-<tr class="memdesc:a9ebe74a40b39ee126cec83a837e3d888 inherit pro_methods_classmerkle_1_1TreeBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">a function that finds a leaf of the Merkle tree in the hash container corresponding to the input data  <a href="classmerkle_1_1TreeBase.html#a9ebe74a40b39ee126cec83a837e3d888">More...</a><br /></td></tr>
-<tr class="separator:a9ebe74a40b39ee126cec83a837e3d888 inherit pro_methods_classmerkle_1_1TreeBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a800301fc082aab9032cdff7cee4ce701 inherit pro_methods_classmerkle_1_1TreeBase"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#a800301fc082aab9032cdff7cee4ce701">find_leaf</a> (auto &amp;&amp;data) const</td></tr>
+<tr class="memdesc:a800301fc082aab9032cdff7cee4ce701 inherit pro_methods_classmerkle_1_1TreeBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">a function that finds a leaf of the Merkle tree in the hash container corresponding to the input data  <a href="classmerkle_1_1TreeBase.html#a800301fc082aab9032cdff7cee4ce701">More...</a><br /></td></tr>
+<tr class="separator:a800301fc082aab9032cdff7cee4ce701 inherit pro_methods_classmerkle_1_1TreeBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -181,10 +183,10 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_types_classmerkle_1_1TreeBase"><td colspan="2" onclick="javascript:toggleInherit('pro_types_classmerkle_1_1TreeBase')"><img src="closed.png" alt="-"/>&#160;Protected Types inherited from <a class="el" href="classmerkle_1_1TreeBase.html">merkle::TreeBase&lt; FixedSizeTree&lt; HashFunc, LEAFS_N &gt;, HashFunc &gt;</a></td></tr>
-<tr class="memitem:a4fb649690d4181f60e353a0171fafb6b inherit pro_types_classmerkle_1_1TreeBase"><td class="memItemLeft" align="right" valign="top"><a id="a4fb649690d4181f60e353a0171fafb6b"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#a4fb649690d4181f60e353a0171fafb6b">hash_t</a> = typename std::invoke_result_t&lt; HashFunc, const uint8_t *, size_t &gt;</td></tr>
-<tr class="memdesc:a4fb649690d4181f60e353a0171fafb6b inherit pro_types_classmerkle_1_1TreeBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">hash function return data type <br /></td></tr>
-<tr class="separator:a4fb649690d4181f60e353a0171fafb6b inherit pro_types_classmerkle_1_1TreeBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83a309d21359cb71ee13ded3ee0e21d4 inherit pro_types_classmerkle_1_1TreeBase"><td class="memItemLeft" align="right" valign="top"><a id="a83a309d21359cb71ee13ded3ee0e21d4"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html#a83a309d21359cb71ee13ded3ee0e21d4">hash_t</a> = typename std::invoke_result_t&lt; HashFunc, uint8_t *, size_t &gt;</td></tr>
+<tr class="memdesc:a83a309d21359cb71ee13ded3ee0e21d4 inherit pro_types_classmerkle_1_1TreeBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">hash function return data type <br /></td></tr>
+<tr class="separator:a83a309d21359cb71ee13ded3ee0e21d4 inherit pro_types_classmerkle_1_1TreeBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename HashFunc, uint64_t LEAFS_N&gt;<br />
@@ -276,7 +278,7 @@ template&lt;typename HashFunc , uint64_t LEAFS_N&gt; </div>
 </div><div class="memdoc">
 
 <p>build a tree based on a data container </p>
-<p>... </p><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ccont</td><td>data container </td></tr>
   </table>
@@ -452,6 +454,45 @@ template&lt;typename HashFunc , uint64_t LEAFS_N&gt; </div>
 
 <p>root of the Merkle tree </p>
 <dl class="section return"><dt>Returns</dt><dd>last (topmost) hash </dd></dl>
+
+</div>
+</div>
+<a id="a5b81af883488920f0160c465595ae9a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b81af883488920f0160c465595ae9a0">&#9670;&nbsp;</a></span>verify_proof()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename HashFunc , uint64_t LEAFS_N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto <a class="el" href="classmerkle_1_1FixedSizeTree.html">merkle::FixedSizeTree</a>&lt; HashFunc, LEAFS_N &gt;::verify_proof </td>
+          <td>(</td>
+          <td class="paramtype">auto &amp;&amp;&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">auto &amp;&amp;&#160;</td>
+          <td class="paramname"><em>proof</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>... </p><dl class="section note"><dt>Note</dt><dd>O(logN) complexity where N is equal to the number of hashes in the tree </dd></dl>
 
 </div>
 </div>

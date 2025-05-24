@@ -85,18 +85,16 @@ $(function() {
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">return</span> in + (in &amp; 1);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="utils_8hh.html#a0ee00b8fdab97b371c10cd6bcdac4e18">   37</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="utils_8hh.html#a0ee00b8fdab97b371c10cd6bcdac4e18">concat_bytes</a>(Args&amp;&amp;... args) {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    static_assert(<span class="keyword">sizeof</span>...(Args) &gt; 0);</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="utils_8hh.html#abb151e8f5e0e38e978a8ba9977d6b407">   38</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="utils_8hh.html#abb151e8f5e0e38e978a8ba9977d6b407">concat_bytes</a>(<span class="keyword">auto</span>&amp;&amp;... args) {</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">char</span> out[(<span class="keyword">sizeof</span>(args) + ...)];</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    uint64_t s{};</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    ((memcpy(out + s, &amp;args, <span class="keyword">sizeof</span>(args)), s += <span class="keyword">sizeof</span>(args)), ...);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">return</span> std::to_array(out);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
-<div class="ttc" id="autils_8hh_html_a0ee00b8fdab97b371c10cd6bcdac4e18"><div class="ttname"><a href="utils_8hh.html#a0ee00b8fdab97b371c10cd6bcdac4e18">concat_bytes</a></div><div class="ttdeci">constexpr auto concat_bytes(Args &amp;&amp;... args)</div><div class="ttdoc">performs concatenation of two contiguous (in memory) containers</div><div class="ttdef"><b>Definition:</b> utils.hh:37</div></div>
 <div class="ttc" id="autils_8hh_html_a1df6ff798c14f3d7026a22862fcff4c7"><div class="ttname"><a href="utils_8hh.html#a1df6ff798c14f3d7026a22862fcff4c7">round_to_even</a></div><div class="ttdeci">constexpr T round_to_even(T in)</div><div class="ttdoc">finds nearest (equal or greater) even number</div><div class="ttdef"><b>Definition:</b> utils.hh:29</div></div>
 <div class="ttc" id="autils_8hh_html_a8bb84d2ee92aa38aae1b591076962062"><div class="ttname"><a href="utils_8hh.html#a8bb84d2ee92aa38aae1b591076962062">ilog2</a></div><div class="ttdeci">constexpr T ilog2(T x)</div><div class="ttdoc">fastest implementation of the base 2 integer algorithm</div><div class="ttdef"><b>Definition:</b> utils.hh:21</div></div>
+<div class="ttc" id="autils_8hh_html_abb151e8f5e0e38e978a8ba9977d6b407"><div class="ttname"><a href="utils_8hh.html#abb151e8f5e0e38e978a8ba9977d6b407">concat_bytes</a></div><div class="ttdeci">constexpr auto concat_bytes(auto &amp;&amp;... args)</div><div class="ttdoc">performs concatenation of two contiguous (in memory) containers</div><div class="ttdef"><b>Definition:</b> utils.hh:38</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

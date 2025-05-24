@@ -17,17 +17,29 @@
 #include <vector>
 
 
+template <typename T, std::size_t N>
+std::ostream& operator<<(std::ostream& os, const std::array<T, N>& arr) {
+    if (N == 0) {
+        return os;
+    }
+
+    os << std::hex << arr[0];
+    std::for_each(arr.begin() + 1, arr.end(), [&os](const T& elem) {os << (int)elem;});
+
+    return os;
+}
+
 namespace fs_tree_tests {
 
 TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
     // simplest hash function only for tests
-    constexpr auto hash(const uint8_t * const bytes, const size_t n) {
-        union { uint64_t v; uint8_t bytes[sizeof(v)]; } hash{};
+    constexpr auto hash(const char * const bytes, const size_t n) {
+        union { uint64_t v; char bytes[sizeof(v)]; } hash{};
         for(size_t i{}; i < n; ++i)
             hash.v = (hash.v * 31) + bytes[i];
 
-        return std::to_array(hash.bytes); // std::array<uint8_t, 8>
+        return std::to_array(hash.bytes); // std::array<char, 8>
     }
 
     template<typename T>
@@ -41,6 +53,9 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
         REQUIRE(tree.height() == 0);
         REQUIRE(tree.root() == tree.node_hash((std::string)"one"));
+
+
+
     }
 
 
@@ -53,7 +68,7 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
     }
 
 
-    TEST_CASE("[build] five nodes, tree with node additions") {
+    TEST_CASE("[build] five nodes, tree with node additions while build") {
         std::vector<std::string> d = {"first", "second", "third", "fourth", "fifth"};
         auto tree = merkle::make_fs_tree<5>(hash, d);
 
@@ -62,7 +77,7 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
         auto lh{[&](auto&& x){ return tree.leaf_hash(x); }};
         auto nh{[&](auto&& x){ return tree.node_hash(x); }};
 
-        std::vector<std::array<uint8_t, sizeof(uint64_t)>> l3 = {lh(d[0]), lh(d[1]), lh(d[2]), lh(d[3]), lh(d[4]), lh(d[4])};
+        std::vector<std::array<char, sizeof(uint64_t)>> l3 = {lh(d[0]), lh(d[1]), lh(d[2]), lh(d[3]), lh(d[4]), lh(d[4])};
         decltype(l3) l2 = {nh(l3[0] + l3[1]), nh(l3[2] + l3[3]), nh(l3[4] + l3[5]), nh(l3[4] + l3[5])};
         decltype(l2) l1 = {nh(l2[0] + l2[1]), nh(l2[2] + l2[3])};
 

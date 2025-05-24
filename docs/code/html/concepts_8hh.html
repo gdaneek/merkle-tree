@@ -94,7 +94,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="center"><img src="concepts_8hh__dep__incl.png" border="0" usemap="#aconcepts_8hhdep" alt=""/></div>
 <map name="aconcepts_8hhdep" id="aconcepts_8hhdep">
 <area shape="rect" title="Custom concepts for implementing the Merkle tree." alt="" coords="5,5,105,32"/>
-<area shape="rect" href="merkle_8hpp.html" title="Implementation of the Merkle tree." alt="" coords="7,80,103,107"/>
+<area shape="rect" href="merkle_8hpp.html" title="Several implementations of the Merkle tree." alt="" coords="7,80,103,107"/>
 </map>
 </div>
 </div>
@@ -102,25 +102,32 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a912ad7410c5b9e1da3428cf6a251553e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a912ad7410c5b9e1da3428cf6a251553e"><td class="memTemplItemLeft" align="right" valign="top">concept&#160;</td><td class="memTemplItemRight" valign="bottom"><b>HasDataMethod</b></td></tr>
-<tr class="separator:a912ad7410c5b9e1da3428cf6a251553e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e598d65de6f148421da84f9062e5244"><td class="memTemplParams" colspan="2"><a id="a6e598d65de6f148421da84f9062e5244"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a6e598d65de6f148421da84f9062e5244"><td class="memTemplItemLeft" align="right" valign="top">concept&#160;</td><td class="memTemplItemRight" valign="bottom"><b>PODType</b> = std::is_trivial_v&lt;T&gt; &amp;&amp; std::is_standard_layout_v&lt;T&gt;</td></tr>
+<tr class="separator:a6e598d65de6f148421da84f9062e5244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37542e8f8e74eb0e401c1c917e6a133d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a37542e8f8e74eb0e401c1c917e6a133d"><td class="memTemplItemLeft" align="right" valign="top">concept&#160;</td><td class="memTemplItemRight" valign="bottom"><b>HasDataAndSize</b></td></tr>
+<tr class="separator:a37542e8f8e74eb0e401c1c917e6a133d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6c3fc430f7e150c1dab8837755fd641"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ad6c3fc430f7e150c1dab8837755fd641"><td class="memTemplItemLeft" align="right" valign="top">concept&#160;</td><td class="memTemplItemRight" valign="bottom"><b>ContiguousContainer</b></td></tr>
+<tr class="memitem:ad6c3fc430f7e150c1dab8837755fd641"><td class="memTemplItemLeft" align="right" valign="top">concept&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="concepts_8hh.html#ad6c3fc430f7e150c1dab8837755fd641">ContiguousContainer</a> = PODType&lt;T&gt; || HasDataAndSize&lt;T&gt;</td></tr>
+<tr class="memdesc:ad6c3fc430f7e150c1dab8837755fd641"><td class="mdescLeft">&#160;</td><td class="mdescRight">requires that the container is contiguous  <a href="concepts_8hh.html#ad6c3fc430f7e150c1dab8837755fd641">More...</a><br /></td></tr>
 <tr class="separator:ad6c3fc430f7e150c1dab8837755fd641"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a953b774b4197a74820f83b066748496a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a953b774b4197a74820f83b066748496a"><td class="memTemplItemLeft" align="right" valign="top">concept&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Iterable</b></td></tr>
+<tr class="memitem:a953b774b4197a74820f83b066748496a"><td class="memTemplItemLeft" align="right" valign="top">concept&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="concepts_8hh.html#a953b774b4197a74820f83b066748496a">Iterable</a></td></tr>
+<tr class="memdesc:a953b774b4197a74820f83b066748496a"><td class="mdescLeft">&#160;</td><td class="mdescRight">requires that the container is iterable  <a href="concepts_8hh.html#a953b774b4197a74820f83b066748496a">More...</a><br /></td></tr>
 <tr class="separator:a953b774b4197a74820f83b066748496a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27d07d7b5e214814f31f4b8191e7a626"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a27d07d7b5e214814f31f4b8191e7a626"><td class="memTemplItemLeft" align="right" valign="top">concept&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Indexable</b></td></tr>
+<tr class="memitem:a27d07d7b5e214814f31f4b8191e7a626"><td class="memTemplItemLeft" align="right" valign="top">concept&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="concepts_8hh.html#a27d07d7b5e214814f31f4b8191e7a626">Indexable</a></td></tr>
+<tr class="memdesc:a27d07d7b5e214814f31f4b8191e7a626"><td class="mdescLeft">&#160;</td><td class="mdescRight">requires that the container is indexable  <a href="concepts_8hh.html#a27d07d7b5e214814f31f4b8191e7a626">More...</a><br /></td></tr>
 <tr class="separator:a27d07d7b5e214814f31f4b8191e7a626"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Custom concepts for implementing the Merkle tree. </p>
 <dl class="section author"><dt>Author</dt><dd><a href="https://github.com/gdaneek">https://github.com/gdaneek</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>30.05.2025 </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.0-beta </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/gdaneek/MerkleTree.git">https://github.com/gdaneek/MerkleTree.git</a> </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/gdaneek/merkle-tree">https://github.com/gdaneek/merkle-tree</a> </dd></dl>
 </div><h2 class="groupheader">Variable Documentation</h2>
 <a id="ad6c3fc430f7e150c1dab8837755fd641"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad6c3fc430f7e150c1dab8837755fd641">&#9670;&nbsp;</a></span>ContiguousContainer</h2>
@@ -131,19 +138,18 @@ Variables</h2></td></tr>
 template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">concept ContiguousContainer</td>
+          <td class="memname">concept ContiguousContainer = PODType&lt;T&gt; || HasDataAndSize&lt;T&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= requires(T t) {</div>
-<div class="line">    { t.size() } -&gt; std::integral;</div>
-<div class="line"> </div>
-<div class="line">}</div>
-</div><!-- fragment -->
+
+<p>requires that the container is contiguous </p>
+<dl class="section note"><dt>Note</dt><dd>continuity means that the container is stored in memory without any padding or breaks </dd></dl>
+
 </div>
 </div>
-<a id="a912ad7410c5b9e1da3428cf6a251553e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a912ad7410c5b9e1da3428cf6a251553e">&#9670;&nbsp;</a></span>HasDataMethod</h2>
+<a id="a37542e8f8e74eb0e401c1c917e6a133d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37542e8f8e74eb0e401c1c917e6a133d">&#9670;&nbsp;</a></span>HasDataAndSize</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -151,12 +157,13 @@ template&lt;typename T &gt; </div>
 template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">concept HasDataMethod</td>
+          <td class="memname">concept HasDataAndSize</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= requires(T t) {</div>
-<div class="line">    { t.data() } -&gt; std::convertible_to&lt;const unsigned char*&gt;;</div>
+<div class="line">    { t.size() } -&gt; std::integral;</div>
+<div class="line">    { t.data() } -&gt; std::convertible_to&lt;void*&gt;;</div>
 <div class="line">}</div>
 </div><!-- fragment -->
 </div>
@@ -176,9 +183,10 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= requires(T t, <span class="keywordtype">size_t</span> i) {</div>
 <div class="line">    { t[i] };</div>
-<div class="line">    </div>
 <div class="line">}</div>
 </div><!-- fragment -->
+<p>requires that the container is indexable </p>
+
 </div>
 </div>
 <a id="a953b774b4197a74820f83b066748496a"></a>
@@ -199,6 +207,8 @@ template&lt;typename T &gt; </div>
 <div class="line">    { std::end(t) } -&gt; std::sentinel_for&lt;decltype(std::begin(t))&gt;;</div>
 <div class="line">}</div>
 </div><!-- fragment -->
+<p>requires that the container is iterable </p>
+
 </div>
 </div>
 </div><!-- contents -->

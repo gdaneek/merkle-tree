@@ -1,4 +1,4 @@
 <map id="concepts.hh" name="concepts.hh">
 <area shape="rect" id="node1" title="Custom concepts for implementing the Merkle tree." alt="" coords="5,5,105,32"/>
-<area shape="rect" id="node2" href="$merkle_8hpp.html" title="Implementation of the Merkle tree." alt="" coords="7,80,103,107"/>
+<area shape="rect" id="node2" href="$merkle_8hpp.html" title="Several implementations of the Merkle tree." alt="" coords="7,80,103,107"/>
 </map>

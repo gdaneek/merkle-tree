@@ -2,12 +2,13 @@
 \label{merkle_8hpp}\index{merkle.hpp@{merkle.hpp}}
 
 
-Implementation of the Merkle tree.  
+Several implementations of the Merkle tree.  
 
 
 {\ttfamily \#include \char`\"{}concepts.\+hh\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}utils.\+hh\char`\"{}}\newline
 {\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
 Include dependency graph for merkle.\+hpp\+:
 \nopagebreak
 \begin{figure}[H]
@@ -30,15 +31,10 @@ constexpr auto \mbox{\hyperlink{merkle_8hpp_a9ac467055cbf2f68422562eb3972ee18}{m
 \begin{DoxyCompactList}\small\item\em calculates the number of hashes in a Merkle tree \end{DoxyCompactList}\item 
 {\footnotesize template$<$size\+\_\+t Size, typename Hash\+Func $>$ }\\constexpr auto \mbox{\hyperlink{merkle_8hpp_a27ed5f6bbe0e1dc53e2dfe0167bc62c5}{merkle\+::make\+\_\+fs\+\_\+tree}} (Hash\+Func \&hash, auto \&\&... args)
 \begin{DoxyCompactList}\small\item\em Fixed\+Size (FS) Merkle trees factory. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-{\footnotesize template$<$typename T $>$ }\\concept {\bfseries merkle\+::\+Merkle\+Tree\+Impl}
-\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Implementation of the Merkle tree. 
+Several implementations of the Merkle tree. 
 
 \begin{DoxyAuthor}{Author}
 \href{https://github.com/gdaneek}{\texttt{ https\+://github.\+com/gdaneek}} 
@@ -47,10 +43,10 @@ Implementation of the Merkle tree.
 30.\+05.\+2025 
 \end{DoxyDate}
 \begin{DoxyVersion}{Version}
-1.\+0-\/beta 
+1.\+0 
 \end{DoxyVersion}
 \begin{DoxySeeAlso}{See also}
-\href{https://github.com/gdaneek/MerkleTree.git}{\texttt{ https\+://github.\+com/gdaneek/\+Merkle\+Tree.\+git}} 
+\href{https://github.com/gdaneek/merkle-tree}{\texttt{ https\+://github.\+com/gdaneek/merkle-\/tree}} 
 \end{DoxySeeAlso}
 
 
@@ -87,21 +83,3 @@ Fixed\+Size (FS) Merkle trees factory.
 \begin{DoxyReturn}{Returns}
 Fixed\+Size\+Tree instance 
 \end{DoxyReturn}
-
-
-\doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{merkle_8hpp_a6b321e3d1e54546a6694efbf2921a8a4}\label{merkle_8hpp_a6b321e3d1e54546a6694efbf2921a8a4}} 
-\index{merkle.hpp@{merkle.hpp}!MerkleTreeImpl@{MerkleTreeImpl}}
-\index{MerkleTreeImpl@{MerkleTreeImpl}!merkle.hpp@{merkle.hpp}}
-\doxysubsubsection{\texorpdfstring{MerkleTreeImpl}{MerkleTreeImpl}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-concept merkle\+::\+Merkle\+Tree\+Impl}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= requires(T t) \{}
-\DoxyCodeLine{        \{ t.get\_leafs\_n() \} -\/> std::is\_integral;}
-\DoxyCodeLine{       }
-\DoxyCodeLine{    \}}
-
-\end{DoxyCode}

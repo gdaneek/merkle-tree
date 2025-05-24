@@ -63,27 +63,28 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">merkle.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Implementation of the Merkle tree.  
+<p>Several implementations of the Merkle tree.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="concepts_8hh_source.html">concepts.hh</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="utils_8hh_source.html">utils.hh</a>&quot;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for merkle.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="merkle_8hpp__incl.png" border="0" usemap="#amerkle_8hpp" alt=""/></div>
 <map name="amerkle_8hpp" id="amerkle_8hpp">
-<area shape="rect" title="Implementation of the Merkle tree." alt="" coords="280,5,376,32"/>
+<area shape="rect" title="Several implementations of the Merkle tree." alt="" coords="331,5,427,32"/>
 <area shape="rect" href="concepts_8hh.html" title="Custom concepts for implementing the Merkle tree." alt="" coords="147,80,247,107"/>
 <area shape="rect" href="utils_8hh.html" title="auxiliary functions for implementing the Merkle tree" alt="" coords="293,80,363,107"/>
 <area shape="rect" title=" " alt="" coords="388,80,473,107"/>
+<area shape="rect" title=" " alt="" coords="497,80,577,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,85,181"/>
 <area shape="rect" title=" " alt="" coords="110,155,202,181"/>
 <area shape="rect" title=" " alt="" coords="226,155,297,181"/>
@@ -111,19 +112,13 @@ Functions</h2></td></tr>
 <tr class="memitem:a27ed5f6bbe0e1dc53e2dfe0167bc62c5"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="merkle_8hpp.html#a27ed5f6bbe0e1dc53e2dfe0167bc62c5">merkle::make_fs_tree</a> (HashFunc &amp;hash, auto &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a27ed5f6bbe0e1dc53e2dfe0167bc62c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">FixedSize (FS) Merkle trees factory.  <a href="merkle_8hpp.html#a27ed5f6bbe0e1dc53e2dfe0167bc62c5">More...</a><br /></td></tr>
 <tr class="separator:a27ed5f6bbe0e1dc53e2dfe0167bc62c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a6b321e3d1e54546a6694efbf2921a8a4"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a6b321e3d1e54546a6694efbf2921a8a4"><td class="memTemplItemLeft" align="right" valign="top">concept&#160;</td><td class="memTemplItemRight" valign="bottom"><b>merkle::MerkleTreeImpl</b></td></tr>
-<tr class="separator:a6b321e3d1e54546a6694efbf2921a8a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implementation of the Merkle tree. </p>
+<div class="textblock"><p>Several implementations of the Merkle tree. </p>
 <dl class="section author"><dt>Author</dt><dd><a href="https://github.com/gdaneek">https://github.com/gdaneek</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>30.05.2025 </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.0-beta </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/gdaneek/MerkleTree.git">https://github.com/gdaneek/MerkleTree.git</a> </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/gdaneek/merkle-tree">https://github.com/gdaneek/merkle-tree</a> </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a9ac467055cbf2f68422562eb3972ee18"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ac467055cbf2f68422562eb3972ee18">&#9670;&nbsp;</a></span>calc_tree_size()</h2>
@@ -199,27 +194,6 @@ template&lt;size_t Size, typename HashFunc &gt; </div>
 <p>FixedSize (FS) Merkle trees factory. </p>
 <dl class="section return"><dt>Returns</dt><dd>FixedSizeTree instance </dd></dl>
 
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a6b321e3d1e54546a6694efbf2921a8a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b321e3d1e54546a6694efbf2921a8a4">&#9670;&nbsp;</a></span>MerkleTreeImpl</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">concept merkle::MerkleTreeImpl</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= requires(T t) {</div>
-<div class="line">        { t.get_leafs_n() } -&gt; std::is_integral;</div>
-<div class="line">       </div>
-<div class="line">    }</div>
-</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

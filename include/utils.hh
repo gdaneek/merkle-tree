@@ -3,14 +3,14 @@
  *  @brief   auxiliary functions for implementing the Merkle tree
  *  @author  https://github.com/gdaneek
  *  @date    30.05.2025
- *  @version 1.0-beta
- *  @see https://github.com/gdaneek/MerkleTree.git
+ *  @version 1.0
+ *  @see https://github.com/gdaneek/merkle-tree
  */
 
 #pragma once
 
 #include <array>
-
+#include <cstring>
 
 /**
  * @brief fastest implementation of the base 2 integer algorithm
@@ -33,9 +33,9 @@ constexpr inline T round_to_even(T in) {
  /**
   * @brief performs concatenation of two contiguous (in memory) containers
  */
-template<typename... Args>
-constexpr auto concat_bytes(Args&&... args) {
-    static_assert(sizeof...(Args) > 0);
+
+
+constexpr auto concat_bytes(auto&&... args) {
     char out[(sizeof(args) + ...)];
     uint64_t s{};
     ((memcpy(out + s, &args, sizeof(args)), s += sizeof(args)), ...);

@@ -8,8 +8,7 @@ Custom concepts for implementing the Merkle tree.
 {\ttfamily \#include $<$concepts$>$}\newline
 {\ttfamily \#include $<$type\+\_\+traits$>$}\newline
 {\ttfamily \#include $<$iterator$>$}\newline
-Include dependency graph for concepts.\+hh\+:
-\nopagebreak
+Include dependency graph for concepts.\+hh\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -27,14 +26,17 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename T $>$ }\\concept {\bfseries Has\+Data\+Method}
+\mbox{\Hypertarget{concepts_8hh_a6e598d65de6f148421da84f9062e5244}\label{concepts_8hh_a6e598d65de6f148421da84f9062e5244}} 
+{\footnotesize template$<$typename T $>$ }\\concept {\bfseries PODType} = std\+::is\+\_\+trivial\+\_\+v$<$T$>$ \&\& std\+::is\+\_\+standard\+\_\+layout\+\_\+v$<$T$>$
 \item 
-{\footnotesize template$<$typename T $>$ }\\concept {\bfseries Contiguous\+Container}
+{\footnotesize template$<$typename T $>$ }\\concept {\bfseries Has\+Data\+And\+Size}
 \item 
-{\footnotesize template$<$typename T $>$ }\\concept {\bfseries Iterable}
-\item 
-{\footnotesize template$<$typename T $>$ }\\concept {\bfseries Indexable}
-\end{DoxyCompactItemize}
+{\footnotesize template$<$typename T $>$ }\\concept \mbox{\hyperlink{concepts_8hh_ad6c3fc430f7e150c1dab8837755fd641}{Contiguous\+Container}} = PODType$<$T$>$ $\vert$$\vert$ Has\+Data\+And\+Size$<$T$>$
+\begin{DoxyCompactList}\small\item\em requires that the container is contiguous \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\concept \mbox{\hyperlink{concepts_8hh_a953b774b4197a74820f83b066748496a}{Iterable}}
+\begin{DoxyCompactList}\small\item\em requires that the container is iterable \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\concept \mbox{\hyperlink{concepts_8hh_a27d07d7b5e214814f31f4b8191e7a626}{Indexable}}
+\begin{DoxyCompactList}\small\item\em requires that the container is indexable \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -47,10 +49,10 @@ Custom concepts for implementing the Merkle tree.
 30.\+05.\+2025 
 \end{DoxyDate}
 \begin{DoxyVersion}{Version}
-1.\+0-\/beta 
+1.\+0 
 \end{DoxyVersion}
 \begin{DoxySeeAlso}{See also}
-\href{https://github.com/gdaneek/MerkleTree.git}{\texttt{ https\+://github.\+com/gdaneek/\+Merkle\+Tree.\+git}} 
+\href{https://github.com/gdaneek/merkle-tree}{\texttt{ https\+://github.\+com/gdaneek/merkle-\/tree}} 
 \end{DoxySeeAlso}
 
 
@@ -60,27 +62,27 @@ Custom concepts for implementing the Merkle tree.
 \index{ContiguousContainer@{ContiguousContainer}!concepts.hh@{concepts.hh}}
 \doxysubsubsection{\texorpdfstring{ContiguousContainer}{ContiguousContainer}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-concept Contiguous\+Container}
+concept Contiguous\+Container = PODType$<$T$>$ $\vert$$\vert$ Has\+Data\+And\+Size$<$T$>$}
+
+
+
+requires that the container is contiguous 
+
+\begin{DoxyNote}{Note}
+continuity means that the container is stored in memory without any padding or breaks 
+\end{DoxyNote}
+\mbox{\Hypertarget{concepts_8hh_a37542e8f8e74eb0e401c1c917e6a133d}\label{concepts_8hh_a37542e8f8e74eb0e401c1c917e6a133d}} 
+\index{concepts.hh@{concepts.hh}!HasDataAndSize@{HasDataAndSize}}
+\index{HasDataAndSize@{HasDataAndSize}!concepts.hh@{concepts.hh}}
+\doxysubsubsection{\texorpdfstring{HasDataAndSize}{HasDataAndSize}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+concept Has\+Data\+And\+Size}
 
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{= requires(T t) \{}
 \DoxyCodeLine{    \{ t.size() \} -\/> std::integral;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{concepts_8hh_a912ad7410c5b9e1da3428cf6a251553e}\label{concepts_8hh_a912ad7410c5b9e1da3428cf6a251553e}} 
-\index{concepts.hh@{concepts.hh}!HasDataMethod@{HasDataMethod}}
-\index{HasDataMethod@{HasDataMethod}!concepts.hh@{concepts.hh}}
-\doxysubsubsection{\texorpdfstring{HasDataMethod}{HasDataMethod}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-concept Has\+Data\+Method}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= requires(T t) \{}
-\DoxyCodeLine{    \{ t.data() \} -\/> std::convertible\_to<const unsigned char*>;}
+\DoxyCodeLine{    \{ t.data() \} -\/> std::convertible\_to<void*>;}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
@@ -95,10 +97,13 @@ concept Indexable}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{= requires(T t, \textcolor{keywordtype}{size\_t} i) \{}
 \DoxyCodeLine{    \{ t[i] \};}
-\DoxyCodeLine{    }
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
+
+
+requires that the container is indexable 
+
 \mbox{\Hypertarget{concepts_8hh_a953b774b4197a74820f83b066748496a}\label{concepts_8hh_a953b774b4197a74820f83b066748496a}} 
 \index{concepts.hh@{concepts.hh}!Iterable@{Iterable}}
 \index{Iterable@{Iterable}!concepts.hh@{concepts.hh}}
@@ -114,3 +119,7 @@ concept Iterable}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
+
+
+requires that the container is iterable 
+
