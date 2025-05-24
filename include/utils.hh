@@ -11,6 +11,7 @@
 
 #include <array>
 #include <cstring>
+#include <cstdint>
 
 /**
  * @brief fastest implementation of the base 2 integer algorithm
