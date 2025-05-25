@@ -13,11 +13,11 @@
 #include <algorithm>
 #include <iostream> // for << operator
 
+#include "merkle_concepts.hh"
+#include "merkle_utils.hh"
+
 
 namespace merkle {
-
-    #include "merkle_concepts.hh"
-    #include "merkle_utils.hh"
 
     /**
      * @brief calculates the number of hashes in a Merkle tree

@@ -17,6 +17,8 @@
 #include <vector>
 
 
+using namespace merkle;
+
 template <typename T, std::size_t N>
 std::ostream& operator<<(std::ostream& os, const std::array<T, N>& arr) {
     if (N == 0) {
