@@ -10,14 +10,14 @@
 
 #pragma once
 
-#include "merkle_concepts.hh"
-#include "merkle_utils.hh"
-
 #include <algorithm>
 #include <iostream> // for << operator
 
 
 namespace merkle {
+
+    #include "merkle_concepts.hh"
+    #include "merkle_utils.hh"
 
     /**
      * @brief calculates the number of hashes in a Merkle tree
