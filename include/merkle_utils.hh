@@ -1,5 +1,5 @@
 /**
- *  @file    utils.hh
+ *  @file    merkle_utils.hh
  *  @brief   auxiliary functions for implementing the Merkle tree
  *  @author  https://github.com/gdaneek
  *  @date    30.05.2025
@@ -31,11 +31,10 @@ constexpr inline T round_to_even(T in) {
     return in + (in & 1);
 }
 
+
  /**
-  * @brief performs concatenation of two contiguous (in memory) containers
+  * @brief performs concatenation of any POD containers
  */
-
-
 constexpr auto concat_bytes(auto&&... args) {
     char out[(sizeof(args) + ...)];
     uint64_t s{};

@@ -1,5 +1,5 @@
 /**
- *  @file    concepts.hh
+ *  @file    merkle_concepts.hh
  *  @brief   Custom concepts for implementing the Merkle tree
  *  @author  https://github.com/gdaneek
  *  @date    30.05.2025

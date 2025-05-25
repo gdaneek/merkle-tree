@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "concepts.hh"
-#include "utils.hh"
+#include "merkle_concepts.hh"
+#include "merkle_utils.hh"
 
 #include <algorithm>
 #include <iostream> // for << operator
@@ -390,7 +390,7 @@ namespace merkle {
      * @return FixedSizeTree instance
      */
     template<size_t Size, typename HashFunc>
-    constexpr auto make_fs_tree(HashFunc& hash, auto&&... args) {
+    constexpr auto make_fs_tree(HashFunc&& hash, auto&&... args) {
         return FixedSizeTree<std::decay_t<HashFunc>, Size>(std::forward<HashFunc>(hash), std::forward<decltype(args)>(args)...);
     }
 
