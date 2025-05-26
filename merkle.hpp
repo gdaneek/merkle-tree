@@ -13,8 +13,7 @@
 #include <algorithm>
 #include <iostream> // for << operator
 
-#include "merkle_concepts.hh"
-#include "merkle_utils.hh"
+#include "merkle_utils.hpp"
 
 
 namespace merkle {
@@ -47,33 +46,23 @@ namespace merkle {
      * @tparam Derived concrete implementation of the Merkle tree
      * @tparam HashFunc type of hash function
      */
-    template<typename Derived, typename HashFunc>
+    template<typename Derived, typename Hasher, typename Concatenator>
     class TreeBase {
 
-        HashFunc m_hash; ///< link to the passed hash function
+        Hasher m_hash; ///<  hash function
+        Concatenator m_concat; ///< hashes concatenation func
 
     protected:
-
-        using hash_t = typename std::invoke_result_t<HashFunc, const char*, size_t>; ///< hash function return data type
-
-        /**
-         * @brief calls a hashing function for objects of any type that are continuously located in memory
-         * @tparam T type of objects
-         * @param input pointer to the first object
-         * @param sz number of objects
-         * @return result of calling the hash function, which calculates the hash from the data as a hash from a sequence of bytes
-         */
-        template<typename T>
-        constexpr auto hash(T const * const input, const size_t sz) const {
-            return m_hash((char const * const)input, sizeof(T) * sz);
-        }
-
 
         /**
          * @brief default constructor
          * @param h link to the hash function that will be used to build the tree
          */
-        constexpr explicit TreeBase(HashFunc& h) : m_hash{h} {}
+        constexpr explicit TreeBase(Hasher h, Concatenator c)
+        : m_hash{h}, m_concat{c} {}
+
+        constexpr TreeBase()
+        : m_hash{}, m_concat{} {}
 
 
         /**
@@ -83,10 +72,11 @@ namespace merkle {
          * @note if the transmitted data was not used when creating tree, it returns -1
          * @note O(N) complexity where N is equal to the number of leaves in the tree
          */
-        constexpr auto find_leaf(auto&& data) const {
+        template<typename... Args>
+        constexpr auto find_leaf(Args&&... data) const {
             // TODO: it not constexpr because using reinterpret_cast. need refactor
 
-            auto lhash = leaf_hash(data);
+            auto lhash = leaf_hash(std::forward<Args>(data)...);
             auto leafs_n = reinterpret_cast<const Derived*>(this)->get_leafs_n();
             auto idata = reinterpret_cast<const Derived*>(this)->data();
 
@@ -105,16 +95,45 @@ namespace merkle {
             }
         }
 
-    public:
+
+        template<typename... Args>
+        constexpr auto hash(Args&&... args) const {
+            return m_hash(std::forward<Args>(args)...);
+        }
+
+
+        template<typename... Args>
+        constexpr auto concat(Args&&... args) const {
+            return m_concat(std::forward<Args>(args)...);
+        }
+
+
+        public:
+
+        /**
+         * @brief calculates the hash of a tree leaf
+         * @details
+         * uses double leaf hashing to protect against Length Extension Attack
+         * @param args parameters for calling the hash function (see hash method overloads)
+         *
+         */
+        template<typename... Args>
+        constexpr auto leaf_hash(Args&&... args) const {
+            constexpr int leaf_salt = 0x00; // for tests only
+            // TODO: can be well optimized if you spread the salt in advance
+            return hash(m_concat(leaf_salt, std::forward<Args>(args)...));
+        }
 
 
         /**
-         * @brief hash function wrapper that allows you to call it for any continuous container
-         * @param ccont any continuous container object
-         * @return result of calling the hash function, which calculates the hash from the ccont as a hash from a sequence of bytes
+         * @brief calculates the hash of a tree node
+         * @param args parameters for calling the hash function (see hash method overloads)
          */
-        constexpr auto hash(ContiguousContainer auto&& ccont) const {
-            return hash(ccont.data(), ccont.size());
+        template<typename... Args>
+        constexpr auto node_hash(Args&&... args) const {
+            constexpr int node_salt = 0x01; // for tests only
+            // TODO: can be well optimized if you spread the salt in advance
+            return hash(m_concat(node_salt, std::forward<Args>(args)...));
         }
 
 
@@ -153,50 +172,24 @@ namespace merkle {
 
 
         /**
-         * @brief calculates the hash of a tree leaf
-         * @details
-         * uses double leaf hashing to protect against Length Extension Attack
-         * @param args parameters for calling the hash function (see hash method overloads)
-         *
-         */
-        constexpr auto leaf_hash(auto&&... args) const {
-            constexpr int leaf_salt = 0x00; // ATTENTION: for tests only; use hmac or nonce
-            // TODO: can be well optimized if you spread the salt in advance
-            // TODO: now im using double hashing only for correct concat_bytes work;
-            //       need modify concat_bytes func
-            return hash(concat_bytes(leaf_salt, hash(std::forward<decltype(args)>(args)...)));
-        }
-
-
-        /**
-         * @brief calculates the hash of a tree node
-         * @param args parameters for calling the hash function (see hash method overloads)
-         */
-        constexpr auto node_hash(auto&&... args) const {
-            constexpr int node_salt = 0x01; // ATTENTION: for tests only; use hmac or nonce
-            // TODO: can be well optimized if you spread the salt in advance
-            auto ret = concat_bytes(node_salt, hash(std::forward<decltype(args)>(args)...));
-            return hash(ret);
-        }
-
-
-        /**
          * @brief checks whether the data block was used when creating the Merkle tree
          * @details
          * If the method returns some index that is not equal to the maximum allowed size_t value,
          * therefore, the input data has a corresponding leaf in the tree
          * @param data any data that can be hashed
          */
-        constexpr auto verify(auto&& data) const {
-            return (this->find_leaf(std::forward<decltype(data)>(data)) != (size_t)-1);
+        template<typename... Args>
+        constexpr auto verify(Args&&... data) const {
+            return (find_leaf(std::forward<Args>(data)...) != (size_t)-1);
         }
 
 
         /**
          * @brief an alias for verify
          */
-        constexpr auto has(auto&& data) const {
-            return this->verify(std::forward<decltype(data)>(data));
+        template<typename... Args>
+        constexpr auto has(Args&&... data) const {
+            return verify(std::forward<Args>(data)...);
         }
     };
 
@@ -210,17 +203,16 @@ namespace merkle {
      * exactly 0 operations are spent on adding its child elements.
      * By default, preference is given to the construction algorithm with copying the last node on layers with an odd size,
      * since the construction algorithm is much simpler for it, and the additional memory consumption is insignificant.
-     * @tparam HashFunc type of hash function
+     * @tparam Hasher type of hash function
      * @tparam LEAFS_N  the number of leaves in the tree calculated at the compilation stage
      */
-    template<typename HashFunc, uint64_t LEAFS_N>
-    class FixedSizeTree : public TreeBase<FixedSizeTree<HashFunc, LEAFS_N>, HashFunc> {
+    template<typename Hash, uint64_t LEAFS_N, typename Hasher, typename Concatenator = UnifiedConcat>
+    class FixedSizeTree : public TreeBase<FixedSizeTree<Hash, LEAFS_N, Hasher, Concatenator>, Hasher, Concatenator> {
 
-        using Base = TreeBase<FixedSizeTree<HashFunc, LEAFS_N>, HashFunc>;
-        using typename Base::hash_t; ///< hash function return type
+        using Base = TreeBase<FixedSizeTree<Hash, LEAFS_N, Hasher, Concatenator>, Hasher, Concatenator>;
 
         inline static constexpr auto SIZE = calc_tree_size(LEAFS_N); ///< number of hashes in tree
-        std::array<hash_t, SIZE> m_data; ///< flattened hashes tree
+        std::array<Hash, SIZE> m_data; ///< flattened hashes tree
 
     protected:
 
@@ -250,14 +242,18 @@ namespace merkle {
          * @warning you can use containers with fewer than LEAFS_N elements, but in this case some methods will give the wrong answer.
          * Using a container with a size larger than LEAFS_N leads to the building of a tree based only on the first LEAFS_N elements.
          */
-        constexpr FixedSizeTree(HashFunc  _hash, auto&& _data)
-        : Base::TreeBase(_hash)  {
-            build(std::forward<decltype(_data)>(_data));
+        template<typename T>
+        constexpr FixedSizeTree(Hasher _h, Concatenator _c, T&& _data) : Base::TreeBase(_h, _c)  {
+            build(std::forward<T>(_data));
         }
 
+        template<typename T>
+        constexpr explicit FixedSizeTree(T&& _data) : Base::TreeBase()  {
+            build(std::forward<T>(_data));
+        }
 
-        constexpr explicit FixedSizeTree(HashFunc _hash)
-        : Base::TreeBase(_hash) {}
+        constexpr explicit FixedSizeTree(Hasher _h, Concatenator _c): Base::TreeBase(_h, _c) {}
+        constexpr FixedSizeTree() : Base() {}
 
 
         /**
@@ -269,28 +265,19 @@ namespace merkle {
          constexpr auto build(auto&& ccont) { // requires ccont.size() == SIZE
 
             if constexpr (LEAFS_N == 1) {
-                if constexpr(Iterable<decltype(ccont)>)
-                    m_data[0] = this->node_hash(*ccont.begin());
-                else
-                    m_data[0] = this->node_hash(ccont[0]);
-
+                m_data[0] = this->node_hash(*ccont.begin());
                 return *this;
             }
 
-            if constexpr (Iterable<decltype(ccont)>) {
-                auto f{[this](auto&& x) {
-                    return this->leaf_hash(x);
-                }};
-                std::transform(std::begin(ccont), std::end(ccont), std::begin(m_data), f);
-            } else if constexpr (Indexable<decltype(ccont)>) {
-                for(size_t i{};i < ccont.size();++i)
-                    m_data[i] = this->leaf_hash(ccont[i]);
-            }
+            size_t it{};
+            for(auto&& x : ccont) // i don't want use std::transform
+                m_data[it++] = this->leaf_hash(x);
+
 
             for(size_t t{}, l{}, r{LEAFS_N};l < r-1;t = l, l = r, r += ((r - t) >> 1)) {
                 if(r & 1) m_data[r++] = m_data[r - 1];
                 for(uint64_t i = 0;i < (r-l)>>1; i++)
-                    m_data[r + i] = this->node_hash(m_data.data() + (i<<1) + l, 2); // implicit concat
+                    m_data[r + i] = this->node_hash(m_data[(i<<1) + l], m_data[(i<<1) + l + 1]); // implicit concat available
 
             }
 
@@ -308,14 +295,14 @@ namespace merkle {
          */
         constexpr auto get_proof(auto&& data) const {
             constexpr auto height = Base::height(LEAFS_N);
-            std::array<std::pair<hash_t, bool>, height + 1> proof{};                  // because for 0 ... 1 levels height == 1 but proof vals num = 2
+            std::array<std::pair<Hash, bool>, height + 1> proof{};                  // because for 0 ... 1 levels height == 1 but proof vals num = 2
 
             if constexpr (LEAFS_N == 1)
                 return this->node_hash(data) == m_data[0]? decltype(proof){std::make_pair(m_data[0], bool{})} : proof;
 
             auto idx = this->find_leaf(data);
             if(idx == (size_t)-1)
-                return std::make_pair(hash_t{}, proof);   // empty array
+                return std::make_pair(Hash{}, proof);   // empty array
 
             auto initial = m_data[idx];
 
@@ -331,12 +318,12 @@ namespace merkle {
          * ...
          * @note O(logN) complexity where N is equal to the number of hashes in the tree
          */
-        constexpr auto verify_proof(auto&& data, auto&& proof) {  // proof - ...<std::pair<hash_t, bool>>
+        constexpr auto verify_proof(auto&& data, auto&& proof) {  // proof - ...<std::pair<Hash, bool>>
             auto curr_hash = this->leaf_hash(data);
             auto supposed_root = proof(proof.size() - 1).first;
             for(auto i = 0;i < proof.size() - 1;++i)
-                curr_hash = proof[i].second?  this->node_hash(concat_bytes(proof[i].first, curr_hash))
-                                           :  this->node_hash(concat_bytes(curr_hash, proof[i].first));
+                curr_hash = proof[i].second?  this->node_hash(proof[i].first, curr_hash)
+                                           :  this->node_hash(curr_hash, proof[i].first);
 
             return (curr_hash == supposed_root);
         }
@@ -371,7 +358,7 @@ namespace merkle {
         }
 
 
-        friend std::ostream& operator<<(std::ostream& os, FixedSizeTree<HashFunc, LEAFS_N>& tree) {
+        friend std::ostream& operator<<(std::ostream& os, FixedSizeTree<Hash, LEAFS_N, Hasher, Concatenator>& tree) {
             os << "Merkle tree:\n";
             for(auto i = 0;i <= tree.height();++i) {
                 auto [ldata, lsz] = tree.get_layer(tree.height() - i);
@@ -384,15 +371,6 @@ namespace merkle {
         }
     };
 
-
-    /**
-     * @brief FixedSize (FS) Merkle trees factory
-     * @return FixedSizeTree instance
-     */
-    template<size_t Size, typename HashFunc>
-    constexpr auto make_fs_tree(HashFunc&& hash, auto&&... args) {
-        return FixedSizeTree<std::decay_t<HashFunc>, Size>(std::forward<HashFunc>(hash), std::forward<decltype(args)>(args)...);
-    }
 
     // TODO: Dymamic resizeble tree
 

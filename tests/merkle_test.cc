@@ -3,7 +3,7 @@
  * @brief   Tests for Merkle trees
  * @author  https://github.com/gdaneek
  * @date    30.05.2025
- * @version 1.0-beta
+ * @version 1.0
  * @see https://github.com/gdaneek/MerkleTree.git
  */
 
@@ -11,7 +11,7 @@
 #include "doctest.h"
 
 #include "merkle.hpp"
-#include <algorithm> // for std::equal
+#include <algorithm>
 #include <array>
 #include <string>
 #include <vector>
@@ -21,9 +21,8 @@ using namespace merkle;
 
 template <typename T, std::size_t N>
 std::ostream& operator<<(std::ostream& os, const std::array<T, N>& arr) {
-    if (N == 0) {
+    if (N == 0)
         return os;
-    }
 
     os << std::hex << arr[0];
     std::for_each(arr.begin() + 1, arr.end(), [&os](const T& elem) {os << (int)elem;});
@@ -31,39 +30,44 @@ std::ostream& operator<<(std::ostream& os, const std::array<T, N>& arr) {
     return os;
 }
 
+
 namespace fs_tree_tests {
 
 TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
-    // simplest hash function only for tests
-    constexpr auto hash(const char * const bytes, const size_t n) {
-        union { uint64_t v; char bytes[sizeof(v)]; } hash{};
-        for(size_t i{}; i < n; ++i)
-            hash.v = (hash.v * 31) + bytes[i];
 
-        return std::to_array(hash.bytes); // std::array<char, 8>
-    }
+    class Hasher {
+    public:
+
+        using hash_t = typename std::array<char, 8>;
+
+        constexpr auto operator()(auto&& cont) const -> hash_t  {
+            union { uint64_t v; char bytes[sizeof(v)]; } hash{};
+            for(auto&& x : cont)
+                hash.v = (hash.v * 31) + x;
+
+            return std::to_array(hash.bytes); // std::array<char, 8>
+        }
+    };
+
 
     template<typename T>
     auto operator+(T&& lhs, T&& rhs) {
-        return concat_bytes(lhs, rhs);
+        return UnifiedConcat{}(lhs, rhs);
     }
 
 
     TEST_CASE("[build] single node") {
-        auto tree = merkle::make_fs_tree<1>(hash, std::vector<std::string>{"one"});
+        FixedSizeTree<Hasher::hash_t, 1, Hasher> tree(std::vector<std::string>{"one"});
 
         REQUIRE(tree.height() == 0);
         REQUIRE(tree.root() == tree.node_hash((std::string)"one"));
-
-
-
     }
 
 
     TEST_CASE("[build] two nodes, simplest tree with non-zero height") {
         std::vector<std::string> d = {"lhs", "rhs"};
-        auto tree = merkle::make_fs_tree<2>(hash, d);
+        FixedSizeTree<Hasher::hash_t, 2, Hasher> tree(d);
 
         REQUIRE(tree.height() == 1);
         REQUIRE(tree.root() == tree.node_hash(tree.leaf_hash(d[0]) + tree.leaf_hash((d[1]))));
@@ -72,7 +76,8 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
     TEST_CASE("[build] five nodes, tree with node additions while build") {
         std::vector<std::string> d = {"first", "second", "third", "fourth", "fifth"};
-        auto tree = merkle::make_fs_tree<5>(hash, d);
+
+        FixedSizeTree<Hasher::hash_t, 5, Hasher> tree(d);
 
         REQUIRE(tree.height() == 3);    // ceil(log2(5)) == 3
 
@@ -89,7 +94,7 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
     TEST_CASE("[verify] Valid nodes verification methods") {
         auto d = std::vector<std::string>{"first", "second"};
-        auto tree = merkle::make_fs_tree<2>(hash, d);
+        FixedSizeTree<Hasher::hash_t, 2, Hasher> tree(d);
 
         REQUIRE((tree.verify(d[0]) && tree.verify(d[1]) && tree.has(d[1])) == true);
         REQUIRE((tree.has((std::string)"third")) == false);
@@ -98,7 +103,7 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
     TEST_CASE("[proof] get proof (simple v)") {
         std::vector<std::string> d = {"lhs", "rhs"};
-        auto tree = merkle::make_fs_tree<2>(hash, d);
+        FixedSizeTree<Hasher::hash_t, 2, Hasher> tree(d);
 
         auto v = tree.leaf_hash(d[0]);
 
@@ -118,7 +123,7 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
     TEST_CASE("[proof] get proof (hard v)") {
         std::vector<std::string> d = {"first", "second", "third", "fourth", "fifth"};
-        auto tree = merkle::make_fs_tree<5>(hash, d);
+        FixedSizeTree<Hasher::hash_t, 5, Hasher> tree(d);
 
         for(auto&& s : d) {
             auto v = tree.leaf_hash(s);
@@ -137,6 +142,4 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
         }
     }
 
-}
-
-};
+}};

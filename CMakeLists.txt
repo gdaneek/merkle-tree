@@ -7,9 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(merkle_test tests/merkle_test.cc)
 target_include_directories(merkle_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include)
-
+#[[
 add_executable(example example/fs_tree.cc)
-target_include_directories(example PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(example PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include)]]
 
 enable_testing()
 add_test(NAME merkle_test COMMAND merkle_test)
