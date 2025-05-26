@@ -14,7 +14,7 @@
 #include <iostream> // for << operator
 
 #include "merkle_utils.hpp"
-
+#include "bytes_concat.hpp"
 
 namespace merkle {
 
@@ -46,7 +46,7 @@ namespace merkle {
      * @tparam Derived concrete implementation of the Merkle tree
      * @tparam HashFunc type of hash function
      */
-    template<typename Derived, typename Hasher, typename Concatenator>
+    template<typename Derived, typename Hasher, typename Concatenator = bconcat::UnifiedConcatenator>
     class TreeBase {
 
         Hasher m_hash; ///<  hash function
@@ -206,10 +206,10 @@ namespace merkle {
      * @tparam Hasher type of hash function
      * @tparam LEAFS_N  the number of leaves in the tree calculated at the compilation stage
      */
-    template<typename Hash, uint64_t LEAFS_N, typename Hasher, typename Concatenator = UnifiedConcat>
-    class FixedSizeTree : public TreeBase<FixedSizeTree<Hash, LEAFS_N, Hasher, Concatenator>, Hasher, Concatenator> {
+    template<typename Hasher, uint64_t LEAFS_N, typename Hash = Hasher::value_type, typename Concatenator = bconcat::UnifiedConcatenator>       // TODO: общий файл с конкатенаторами ++, Hash = Hasher::value_t
+    class FixedSizeTree : public TreeBase<FixedSizeTree<Hasher, LEAFS_N, Hash, Concatenator>, Hasher, Concatenator> {
 
-        using Base = TreeBase<FixedSizeTree<Hash, LEAFS_N, Hasher, Concatenator>, Hasher, Concatenator>;
+        using Base = TreeBase<FixedSizeTree<Hasher, LEAFS_N, Hash, Concatenator>, Hasher, Concatenator>;
 
         inline static constexpr auto SIZE = calc_tree_size(LEAFS_N); ///< number of hashes in tree
         std::array<Hash, SIZE> m_data; ///< flattened hashes tree
@@ -358,7 +358,7 @@ namespace merkle {
         }
 
 
-        friend std::ostream& operator<<(std::ostream& os, FixedSizeTree<Hash, LEAFS_N, Hasher, Concatenator>& tree) {
+        friend std::ostream& operator<<(std::ostream& os, FixedSizeTree<Hasher, LEAFS_N, Hash, Concatenator>& tree) {
             os << "Merkle tree:\n";
             for(auto i = 0;i <= tree.height();++i) {
                 auto [ldata, lsz] = tree.get_layer(tree.height() - i);

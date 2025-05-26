@@ -36,45 +36,4 @@ namespace merkle {
         return in + (in & 1);
     }
 
-
-    /**
-    * @brief performs concatenation of any POD containers
-    */
-    class ConcatPOD {
-    public:
-        constexpr auto operator()(auto&&... args) const {
-            char out[(sizeof(args) + ...)];
-            uint64_t s{};
-            ((memcpy(out + s, &args, sizeof(args)), s += sizeof(args)), ...);
-
-            return std::to_array(out);
-        };
-    };
-
-
-    class UnifiedConcat {
-
-        template<typename T> requires Iterable<T>
-        void append(std::vector<char>& dst, T&& src) const {
-            std::copy(std::begin(src), std::end(src), std::back_inserter(dst));
-        }
-
-        template<typename T> requires (!Iterable<T>)
-        void append(std::vector<char>& dst, T&& src) const {
-            auto curr_sz = dst.size();
-            dst.resize(dst.size() + sizeof(src));
-
-            memcpy(dst.data()+curr_sz , &src, sizeof(src));
-        }
-
-    public:
-        template<typename... Args>
-        constexpr auto operator()(Args&&... args) const {
-            std::vector<char> bytes;
-            ((append(bytes, std::forward<Args>(args))), ...);
-
-            return bytes;
-        }
-    };
-
 }

@@ -39,9 +39,9 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
     class Hasher {
     public:
 
-        using hash_t = typename std::array<char, 8>;
+        using value_type = typename std::array<char, 8>;
 
-        constexpr auto operator()(auto&& cont) const -> hash_t  {
+        constexpr auto operator()(auto&& cont) const -> value_type  {
             union { uint64_t v; char bytes[sizeof(v)]; } hash{};
             for(auto&& x : cont)
                 hash.v = (hash.v * 31) + x;
@@ -53,21 +53,22 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
     template<typename T>
     auto operator+(T&& lhs, T&& rhs) {
-        return UnifiedConcat{}(lhs, rhs);
+        return bconcat::UnifiedConcatenator::concat(lhs, rhs);
     }
 
 
     TEST_CASE("[build] single node") {
-        FixedSizeTree<Hasher::hash_t, 1, Hasher> tree(std::vector<std::string>{"one"});
+        FixedSizeTree<Hasher, 1> tree(std::vector<std::string>{"one"});
 
         REQUIRE(tree.height() == 0);
         REQUIRE(tree.root() == tree.node_hash((std::string)"one"));
     }
 
 
+
     TEST_CASE("[build] two nodes, simplest tree with non-zero height") {
         std::vector<std::string> d = {"lhs", "rhs"};
-        FixedSizeTree<Hasher::hash_t, 2, Hasher> tree(d);
+        FixedSizeTree<Hasher, 2> tree(d);
 
         REQUIRE(tree.height() == 1);
         REQUIRE(tree.root() == tree.node_hash(tree.leaf_hash(d[0]) + tree.leaf_hash((d[1]))));
@@ -77,7 +78,7 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
     TEST_CASE("[build] five nodes, tree with node additions while build") {
         std::vector<std::string> d = {"first", "second", "third", "fourth", "fifth"};
 
-        FixedSizeTree<Hasher::hash_t, 5, Hasher> tree(d);
+        FixedSizeTree<Hasher, 5> tree(d);
 
         REQUIRE(tree.height() == 3);    // ceil(log2(5)) == 3
 
@@ -94,7 +95,7 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
     TEST_CASE("[verify] Valid nodes verification methods") {
         auto d = std::vector<std::string>{"first", "second"};
-        FixedSizeTree<Hasher::hash_t, 2, Hasher> tree(d);
+        FixedSizeTree<Hasher, 2> tree(d);
 
         REQUIRE((tree.verify(d[0]) && tree.verify(d[1]) && tree.has(d[1])) == true);
         REQUIRE((tree.has((std::string)"third")) == false);
@@ -103,7 +104,7 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
     TEST_CASE("[proof] get proof (simple v)") {
         std::vector<std::string> d = {"lhs", "rhs"};
-        FixedSizeTree<Hasher::hash_t, 2, Hasher> tree(d);
+        FixedSizeTree<Hasher, 2> tree(d);
 
         auto v = tree.leaf_hash(d[0]);
 
@@ -123,7 +124,7 @@ TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
     TEST_CASE("[proof] get proof (hard v)") {
         std::vector<std::string> d = {"first", "second", "third", "fourth", "fifth"};
-        FixedSizeTree<Hasher::hash_t, 5, Hasher> tree(d);
+        FixedSizeTree<Hasher, 5> tree(d);
 
         for(auto&& s : d) {
             auto v = tree.leaf_hash(s);
