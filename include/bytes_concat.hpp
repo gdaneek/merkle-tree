@@ -16,6 +16,12 @@
 #include <cstring>
 #include <cstdint>
 
+
+#include <iterator>
+#include <vector>
+#include <concepts>
+#include <type_traits>
+
 namespace bconcat {
 
     /**
@@ -43,10 +49,6 @@ namespace bconcat {
     };
 
 
-    #include <iterator>
-    #include <vector>
-    #include <concepts>
-    #include <type_traits>
 
 
     /**
