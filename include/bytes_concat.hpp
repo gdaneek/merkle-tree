@@ -14,6 +14,7 @@
 #include <array>
 #include <algorithm>
 #include <cstring>
+#include <cstdint>
 
 namespace bconcat {
 
