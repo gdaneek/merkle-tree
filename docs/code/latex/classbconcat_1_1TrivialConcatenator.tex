@@ -1,0 +1,40 @@
+\hypertarget{classbconcat_1_1TrivialConcatenator}{}\doxysection{bconcat\+::Trivial\+Concatenator Class Reference}
+\label{classbconcat_1_1TrivialConcatenator}\index{bconcat::TrivialConcatenator@{bconcat::TrivialConcatenator}}
+
+
+performs concatenation of objects with a trivial copy constructor  
+
+
+
+
+{\ttfamily \#include $<$bytes\+\_\+concat.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbconcat_1_1TrivialConcatenator_ac013fa9faa84605bbc02591974d311ca}\label{classbconcat_1_1TrivialConcatenator_ac013fa9faa84605bbc02591974d311ca}} 
+{\footnotesize template$<$typename... Args$>$ }\\auto {\bfseries operator()} (Args \&\&... args) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbconcat_1_1TrivialConcatenator_aceda2e3dc8943292e37a08141ba4df6d}\label{classbconcat_1_1TrivialConcatenator_aceda2e3dc8943292e37a08141ba4df6d}} 
+static auto {\bfseries concat} (auto \&\&... args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+performs concatenation of objects with a trivial copy constructor 
+
+
+\begin{DoxyItemize}
+\item based on memcpy for performance
+\item return std\+::array of bytes \begin{DoxyNote}{Note}
+useful for POD types 
+\end{DoxyNote}
+
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bytes__concat_8hpp}{bytes\+\_\+concat.\+hpp}}\end{DoxyCompactItemize}

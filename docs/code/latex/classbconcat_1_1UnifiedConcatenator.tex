@@ -1,0 +1,78 @@
+\hypertarget{classbconcat_1_1UnifiedConcatenator}{}\doxysection{bconcat\+::Unified\+Concatenator Class Reference}
+\label{classbconcat_1_1UnifiedConcatenator}\index{bconcat::UnifiedConcatenator@{bconcat::UnifiedConcatenator}}
+
+
+concatenate any data structures  
+
+
+
+
+{\ttfamily \#include $<$bytes\+\_\+concat.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbconcat_1_1UnifiedConcatenator_a4b98d8534666406bd8bffc7f466a0fac}\label{classbconcat_1_1UnifiedConcatenator_a4b98d8534666406bd8bffc7f466a0fac}} 
+using {\bfseries value\+\_\+type} = typename std\+::vector$<$ char $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbconcat_1_1UnifiedConcatenator_a565c5946841cff65f8254bd0fe185757}\label{classbconcat_1_1UnifiedConcatenator_a565c5946841cff65f8254bd0fe185757}} 
+{\footnotesize template$<$typename T $>$ }\\{\bfseries requires} (!Iterable$<$ T $>$ \&\&Memcpy\+Copiable$<$ T $>$) static void append(value\+\_\+type \&dst
+\item 
+\mbox{\Hypertarget{classbconcat_1_1UnifiedConcatenator_a8a00ba1ee708e31f6ba40a1ba6f3790a}\label{classbconcat_1_1UnifiedConcatenator_a8a00ba1ee708e31f6ba40a1ba6f3790a}} 
+dst {\bfseries resize} (dst.\+size()+sizeof(src))
+\item 
+\mbox{\Hypertarget{classbconcat_1_1UnifiedConcatenator_a21673a80a7e00430f54a08e25ca693f4}\label{classbconcat_1_1UnifiedConcatenator_a21673a80a7e00430f54a08e25ca693f4}} 
+{\bfseries memcpy} (dst.\+data()+curr\+\_\+sz, \&src, sizeof(src))
+\item 
+\mbox{\Hypertarget{classbconcat_1_1UnifiedConcatenator_ac73f4e459b482690fd9d98796dc3944f}\label{classbconcat_1_1UnifiedConcatenator_ac73f4e459b482690fd9d98796dc3944f}} 
+{\footnotesize template$<$typename... Args$>$ }\\auto {\bfseries operator()} (Args \&\&... args) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbconcat_1_1UnifiedConcatenator_ac4c2cc02b7df4ae5a32bcef267e89fa7}\label{classbconcat_1_1UnifiedConcatenator_ac4c2cc02b7df4ae5a32bcef267e89fa7}} 
+{\footnotesize template$<$typename T $>$ }\\requires static Iterable$<$ T $>$ void {\bfseries append} (value\+\_\+type \&dst, T \&\&src)
+\item 
+\mbox{\Hypertarget{classbconcat_1_1UnifiedConcatenator_a8feecffa05e87d86efbdb5743ab7871f}\label{classbconcat_1_1UnifiedConcatenator_a8feecffa05e87d86efbdb5743ab7871f}} 
+{\footnotesize template$<$typename... Args$>$ }\\static auto {\bfseries concat} (Args \&\&... args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+T \&\& {\bfseries src}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+concatenate any data structures 
+
+
+\begin{DoxyItemize}
+\item based on std\+::copy
+\item works mainly with iterable structures, otherwise it simply copies the bytes of the structure (necessary for correct processing of char, int, float, etc. types) \begin{DoxyNote}{Note}
+useful for STL-\/like containers 
+\end{DoxyNote}
+
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbconcat_1_1UnifiedConcatenator_a0140f32bd2e0bc02bd98877c79d0ad4d}\label{classbconcat_1_1UnifiedConcatenator_a0140f32bd2e0bc02bd98877c79d0ad4d}} 
+\index{bconcat::UnifiedConcatenator@{bconcat::UnifiedConcatenator}!src@{src}}
+\index{src@{src}!bconcat::UnifiedConcatenator@{bconcat::UnifiedConcatenator}}
+\doxysubsubsection{\texorpdfstring{src}{src}}
+{\footnotesize\ttfamily T\&\& bconcat\+::\+Unified\+Concatenator\+::src}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{            \textcolor{keyword}{auto} curr\_sz = dst.size()}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bytes__concat_8hpp}{bytes\+\_\+concat.\+hpp}}\end{DoxyCompactItemize}

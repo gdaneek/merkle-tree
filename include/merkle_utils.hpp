@@ -3,16 +3,11 @@
  *  @brief   Auxiliary functions for implementing the Merkle tree
  *  @author  https://github.com/gdaneek
  *  @date    30.05.2025
- *  @version 1.0
+ *  @version 1.1
  *  @see https://github.com/gdaneek/merkle-tree
  */
 
 #pragma once
-
-#include <array>
-#include <cstring>
-#include <cstdint>
-#include <iterator>
 
 #include "merkle_concepts.hpp"
 

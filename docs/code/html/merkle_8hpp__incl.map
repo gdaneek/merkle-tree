@@ -1,11 +1,14 @@
 <map id="merkle.hpp" name="merkle.hpp">
-<area shape="rect" id="node1" title="Several implementations of the Merkle tree." alt="" coords="331,5,427,32"/>
-<area shape="rect" id="node2" href="$concepts_8hh.html" title="Custom concepts for implementing the Merkle tree." alt="" coords="147,80,247,107"/>
-<area shape="rect" id="node6" href="$utils_8hh.html" title="auxiliary functions for implementing the Merkle tree" alt="" coords="293,80,363,107"/>
-<area shape="rect" id="node8" title=" " alt="" coords="388,80,473,107"/>
-<area shape="rect" id="node9" title=" " alt="" coords="497,80,577,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,155,85,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="110,155,202,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="226,155,297,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="321,155,377,181"/>
+<area shape="rect" id="node1" title="Several implementations of the Merkle tree." alt="" coords="137,5,233,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="16,80,96,107"/>
+<area shape="rect" id="node3" href="$merkle__utils_8hpp.html" title="Auxiliary functions for implementing the Merkle tree." alt="" coords="120,80,251,107"/>
+<area shape="rect" id="node8" href="$bytes__concat_8hpp.html" title="Classes are byte concatenation algorithms for different data structures." alt="" coords="276,155,412,181"/>
+<area shape="rect" id="node4" href="$merkle__concepts_8hpp.html" title="Custom concepts for implementing the Merkle tree." alt="" coords="85,155,246,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,229,85,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="110,229,202,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="226,229,297,256"/>
+<area shape="rect" id="node9" title=" " alt="" coords="598,229,658,256"/>
+<area shape="rect" id="node10" title=" " alt="" coords="321,229,377,256"/>
+<area shape="rect" id="node11" title=" " alt="" coords="401,229,487,256"/>
+<area shape="rect" id="node12" title=" " alt="" coords="511,229,574,256"/>
 </map>

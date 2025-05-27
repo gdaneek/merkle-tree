@@ -5,10 +5,9 @@
 Several implementations of the Merkle tree.  
 
 
-{\ttfamily \#include \char`\"{}concepts.\+hh\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}utils.\+hh\char`\"{}}\newline
-{\ttfamily \#include $<$algorithm$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}merkle\+\_\+utils.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bytes\+\_\+concat.\+hpp\char`\"{}}\newline
 Include dependency graph for merkle.\+hpp\+:
 \nopagebreak
 \begin{figure}[H]
@@ -20,17 +19,15 @@ Include dependency graph for merkle.\+hpp\+:
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \mbox{\hyperlink{classmerkle_1_1TreeBase}{merkle\+::\+Tree\+Base$<$ Derived, Hash\+Func $>$}}
+class \mbox{\hyperlink{classmerkle_1_1TreeBase}{merkle\+::\+Tree\+Base$<$ Derived, Hasher, Concatenator $>$}}
 \begin{DoxyCompactList}\small\item\em a base template class for building Merkle trees based on CRTP \end{DoxyCompactList}\item 
-class \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+\+N $>$}}
+class \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree$<$ Hasher, LEAFS\+\_\+\+N, Hash, Concatenator $>$}}
 \begin{DoxyCompactList}\small\item\em General class of Merkle trees calculated at the compilation stage and trees with a size calculated at the compilation stage. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 constexpr auto \mbox{\hyperlink{merkle_8hpp_a9ac467055cbf2f68422562eb3972ee18}{merkle\+::calc\+\_\+tree\+\_\+size}} (uint64\+\_\+t leafs\+\_\+n)
-\begin{DoxyCompactList}\small\item\em calculates the number of hashes in a Merkle tree \end{DoxyCompactList}\item 
-{\footnotesize template$<$size\+\_\+t Size, typename Hash\+Func $>$ }\\constexpr auto \mbox{\hyperlink{merkle_8hpp_a27ed5f6bbe0e1dc53e2dfe0167bc62c5}{merkle\+::make\+\_\+fs\+\_\+tree}} (Hash\+Func \&hash, auto \&\&... args)
-\begin{DoxyCompactList}\small\item\em Fixed\+Size (FS) Merkle trees factory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em calculates the number of hashes in a Merkle tree \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -43,7 +40,7 @@ Several implementations of the Merkle tree.
 30.\+05.\+2025 
 \end{DoxyDate}
 \begin{DoxyVersion}{Version}
-1.\+0 
+1.\+1 
 \end{DoxyVersion}
 \begin{DoxySeeAlso}{See also}
 \href{https://github.com/gdaneek/merkle-tree}{\texttt{ https\+://github.\+com/gdaneek/merkle-\/tree}} 
@@ -68,18 +65,4 @@ calculates the number of hashes in a Merkle trees, created by cloning the last n
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 number of hashes in a Merkle tree 
-\end{DoxyReturn}
-\mbox{\Hypertarget{merkle_8hpp_a27ed5f6bbe0e1dc53e2dfe0167bc62c5}\label{merkle_8hpp_a27ed5f6bbe0e1dc53e2dfe0167bc62c5}} 
-\index{merkle.hpp@{merkle.hpp}!make\_fs\_tree@{make\_fs\_tree}}
-\index{make\_fs\_tree@{make\_fs\_tree}!merkle.hpp@{merkle.hpp}}
-\doxysubsubsection{\texorpdfstring{make\_fs\_tree()}{make\_fs\_tree()}}
-{\footnotesize\ttfamily template$<$size\+\_\+t Size, typename Hash\+Func $>$ \\
-constexpr auto merkle\+::make\+\_\+fs\+\_\+tree (\begin{DoxyParamCaption}\item[{Hash\+Func \&}]{hash,  }\item[{auto \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
-
-
-
-Fixed\+Size (FS) Merkle trees factory. 
-
-\begin{DoxyReturn}{Returns}
-Fixed\+Size\+Tree instance 
 \end{DoxyReturn}

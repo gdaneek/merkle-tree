@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['root_52',['root',['../classmerkle_1_1FixedSizeTree.html#a999a247f7bc68fd273a5f3d46be6f016',1,'merkle::FixedSizeTree']]],
-  ['round_5fto_5feven_53',['round_to_even',['../utils_8hh.html#a1df6ff798c14f3d7026a22862fcff4c7',1,'utils.hh']]]
+  ['size_54',['size',['../classmerkle_1_1TreeBase.html#a255daa53eab8a5052cbdcd67080dceeb',1,'merkle::TreeBase']]]
 ];

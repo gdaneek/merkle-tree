@@ -1,5 +1,5 @@
-\hypertarget{classmerkle_1_1FixedSizeTree}{}\doxysection{merkle\+::Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+N $>$ Class Template Reference}
-\label{classmerkle_1_1FixedSizeTree}\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\hypertarget{classmerkle_1_1FixedSizeTree}{}\doxysection{merkle\+::Fixed\+Size\+Tree$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$ Class Template Reference}
+\label{classmerkle_1_1FixedSizeTree}\index{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}}
 
 
 General class of Merkle trees calculated at the compilation stage and trees with a size calculated at the compilation stage.  
@@ -11,68 +11,72 @@ General class of Merkle trees calculated at the compilation stage and trees with
 
 
 
-Inheritance diagram for merkle\+::Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+N $>$\+:\nopagebreak
+Inheritance diagram for merkle\+::Fixed\+Size\+Tree$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=238pt]{classmerkle_1_1FixedSizeTree__inherit__graph}
+\includegraphics[width=350pt]{classmerkle_1_1FixedSizeTree__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for merkle\+::Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+N $>$\+:\nopagebreak
+Collaboration diagram for merkle\+::Fixed\+Size\+Tree$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=238pt]{classmerkle_1_1FixedSizeTree__coll__graph}
+\includegraphics[width=350pt]{classmerkle_1_1FixedSizeTree__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-constexpr \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a89c86b13f0acffb2f4f3eb9ff244b654}{Fixed\+Size\+Tree}} (const Hash\+Func \&\+\_\+hash, auto \&\&\+\_\+data)
+{\footnotesize template$<$typename T $>$ }\\constexpr \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_ad2924778107ad8109ea5020fae91b567}{Fixed\+Size\+Tree}} (Hasher \+\_\+h, Concatenator \+\_\+c, T \&\&\+\_\+data)
 \begin{DoxyCompactList}\small\item\em constructor for immediate creation of a tree from a data container \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_ac636e92e18cb5caf8083387fc5b32095}\label{classmerkle_1_1FixedSizeTree_ac636e92e18cb5caf8083387fc5b32095}} 
-constexpr {\bfseries Fixed\+Size\+Tree} (const Hash\+Func \&\+\_\+hash)
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_ae2e94c283d763017573663ec4873fd6c}\label{classmerkle_1_1FixedSizeTree_ae2e94c283d763017573663ec4873fd6c}} 
+{\footnotesize template$<$typename T $>$ }\\constexpr {\bfseries Fixed\+Size\+Tree} (T \&\&\+\_\+data)
 \item 
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a0352f1ef9668796eacc3b77af065b0bf}{build}} (auto \&\&ccont)
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_ac83dd70c7cffcfc5bae7fb6b717395f8}\label{classmerkle_1_1FixedSizeTree_ac83dd70c7cffcfc5bae7fb6b717395f8}} 
+constexpr {\bfseries Fixed\+Size\+Tree} (Hasher \+\_\+h, Concatenator \+\_\+c)
+\item 
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a5881fef0fe6cef5db23f4376deaab672}{build}} (auto \&\&ccont)
 \begin{DoxyCompactList}\small\item\em build a tree based on a data container \end{DoxyCompactList}\item 
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a10e1e02fd706f8fed5ec947d1af672fb}{get\+\_\+proof}} (auto \&\&\mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}{data}}) const
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a1e83ceba6bae13a495051128cc7c57db}{get\+\_\+proof}} (auto \&\&\mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a9944fdfb42d2dbf306d9593dbeda0b24}{data}}) const
 \begin{DoxyCompactList}\small\item\em creates a proof of inclusion of some data in the tree \end{DoxyCompactList}\item 
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a5b81af883488920f0160c465595ae9a0}{verify\+\_\+proof}} (auto \&\&\mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}{data}}, auto \&\&proof)
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a4a036578d0c54e5ce948fe1ff621f8bc}{verify\+\_\+proof}} (auto \&\&\mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a9944fdfb42d2dbf306d9593dbeda0b24}{data}}, auto \&\&proof)
 \item 
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a999a247f7bc68fd273a5f3d46be6f016}{root}} () const
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a4f71698ce937b5fc840dcd66a5c046b6}{root}} () const
 \begin{DoxyCompactList}\small\item\em root of the Merkle tree \end{DoxyCompactList}\item 
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}{data}} () const
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a9944fdfb42d2dbf306d9593dbeda0b24}{data}} () const
 \begin{DoxyCompactList}\small\item\em returns a pointer (or iterator) to the hash tree \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a49fe450451749a2adbbd68676dc57b20}{get\+\_\+leafs\+\_\+n}} ()
+static constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_af6d478cdee1df86043d0dfcb416a8f50}{get\+\_\+leafs\+\_\+n}} ()
 \begin{DoxyCompactList}\small\item\em current num of leaves in the tree \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_a436822269d258b7a0628d7648c633d2d}{get\+\_\+layer}} (const size\+\_\+t idx) const
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree_aa6c502a770736034677d4a289a291329}{get\+\_\+layer}} (const size\+\_\+t idx) const
 \begin{DoxyCompactList}\small\item\em finds a pointer to a tree layer by index and its size \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_aa7518759f2796b15000fa17bad945ff7}\label{classmerkle_1_1FixedSizeTree_aa7518759f2796b15000fa17bad945ff7}} 
-std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$ \&tree)
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_aaeeabf627a4786c9afc254dae2e3551c}\label{classmerkle_1_1FixedSizeTree_aaeeabf627a4786c9afc254dae2e3551c}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{Fixed\+Size\+Tree}}$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$ \&tree)
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
-\subsubsection*{template$<$typename Hash\+Func, uint64\+\_\+t LEAFS\+\_\+N$>$\newline
-class merkle\+::\+Fixed\+Size\+Tree$<$ Hash\+Func, LEAFS\+\_\+\+N $>$}
+\subsubsection*{template$<$typename Hasher, uint64\+\_\+t LEAFS\+\_\+N, typename Hash = Hasher\+::value\+\_\+type, typename Concatenator = bconcat\+::\+Unified\+Concatenator$>$\newline
+class merkle\+::\+Fixed\+Size\+Tree$<$ Hasher, LEAFS\+\_\+\+N, Hash, Concatenator $>$}
 
 General class of Merkle trees calculated at the compilation stage and trees with a size calculated at the compilation stage. 
 
 built on the basis of std\+::array to ensure maximum performance. The elements of each layer are laid out in a continuous section of memory, starting with N leaves, then N / 2 nodes, etc. Due to this stacking, an implicit concatenation of neighboring hashes occurs, and when calculating a node of the next level, exactly 0 operations are spent on adding its child elements. By default, preference is given to the construction algorithm with copying the last node on layers with an odd size, since the construction algorithm is much simpler for it, and the additional memory consumption is insignificant. 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em Hash\+Func} & type of hash function \\
+{\em Hasher} & type of hash function \\
 \hline
 {\em LEAFS\+\_\+N} & the number of leaves in the tree calculated at the compilation stage \\
 \hline
@@ -80,12 +84,13 @@ built on the basis of std\+::array to ensure maximum performance. The elements o
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a89c86b13f0acffb2f4f3eb9ff244b654}\label{classmerkle_1_1FixedSizeTree_a89c86b13f0acffb2f4f3eb9ff244b654}} 
-\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!FixedSizeTree@{FixedSizeTree}}
-\index{FixedSizeTree@{FixedSizeTree}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_ad2924778107ad8109ea5020fae91b567}\label{classmerkle_1_1FixedSizeTree_ad2924778107ad8109ea5020fae91b567}} 
+\index{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}!FixedSizeTree@{FixedSizeTree}}
+\index{FixedSizeTree@{FixedSizeTree}!merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}}
 \doxysubsubsection{\texorpdfstring{FixedSizeTree()}{FixedSizeTree()}}
-{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
-constexpr \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::\mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{Fixed\+Size\+Tree}} (\begin{DoxyParamCaption}\item[{const Hash\+Func \&}]{\+\_\+hash,  }\item[{auto \&\&}]{\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+{\footnotesize\ttfamily template$<$typename Hasher , uint64\+\_\+t LEAFS\+\_\+N, typename Hash  = Hasher\+::value\+\_\+type, typename Concatenator  = bconcat\+::\+Unified\+Concatenator$>$ \\
+template$<$typename T $>$ \\
+constexpr \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$\+::\mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{Fixed\+Size\+Tree}} (\begin{DoxyParamCaption}\item[{Hasher}]{\+\_\+h,  }\item[{Concatenator}]{\+\_\+c,  }\item[{T \&\&}]{\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
 
 
 
@@ -107,12 +112,12 @@ you can use containers with fewer than LEAFS\+\_\+N elements, but in this case s
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a0352f1ef9668796eacc3b77af065b0bf}\label{classmerkle_1_1FixedSizeTree_a0352f1ef9668796eacc3b77af065b0bf}} 
-\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!build@{build}}
-\index{build@{build}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a5881fef0fe6cef5db23f4376deaab672}\label{classmerkle_1_1FixedSizeTree_a5881fef0fe6cef5db23f4376deaab672}} 
+\index{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}!build@{build}}
+\index{build@{build}!merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}}
 \doxysubsubsection{\texorpdfstring{build()}{build()}}
-{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::build (\begin{DoxyParamCaption}\item[{auto \&\&}]{ccont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+{\footnotesize\ttfamily template$<$typename Hasher , uint64\+\_\+t LEAFS\+\_\+N, typename Hash  = Hasher\+::value\+\_\+type, typename Concatenator  = bconcat\+::\+Unified\+Concatenator$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$\+::build (\begin{DoxyParamCaption}\item[{auto \&\&}]{ccont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
 
 
 
@@ -129,12 +134,12 @@ this object
 \begin{DoxyNote}{Note}
 O(\+N) complexity where N is equal to the number of hashes in the tree 
 \end{DoxyNote}
-\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}\label{classmerkle_1_1FixedSizeTree_a975bbbd0c481de5af53ad841f4823aa5}} 
-\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!data@{data}}
-\index{data@{data}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a9944fdfb42d2dbf306d9593dbeda0b24}\label{classmerkle_1_1FixedSizeTree_a9944fdfb42d2dbf306d9593dbeda0b24}} 
+\index{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}!data@{data}}
+\index{data@{data}!merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}}
 \doxysubsubsection{\texorpdfstring{data()}{data()}}
-{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+{\footnotesize\ttfamily template$<$typename Hasher , uint64\+\_\+t LEAFS\+\_\+N, typename Hash  = Hasher\+::value\+\_\+type, typename Concatenator  = bconcat\+::\+Unified\+Concatenator$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
 
 
 
@@ -143,12 +148,12 @@ returns a pointer (or iterator) to the hash tree
 \begin{DoxyReturn}{Returns}
 pointer to the beginning of the tree (the leftmost element of the lower layer). The pointer is traversed from left to right from bottom to top. total number of hashes available 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a436822269d258b7a0628d7648c633d2d}\label{classmerkle_1_1FixedSizeTree_a436822269d258b7a0628d7648c633d2d}} 
-\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!get\_layer@{get\_layer}}
-\index{get\_layer@{get\_layer}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_aa6c502a770736034677d4a289a291329}\label{classmerkle_1_1FixedSizeTree_aa6c502a770736034677d4a289a291329}} 
+\index{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}!get\_layer@{get\_layer}}
+\index{get\_layer@{get\_layer}!merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}}
 \doxysubsubsection{\texorpdfstring{get\_layer()}{get\_layer()}}
-{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::get\+\_\+layer (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [protected]}}
+{\footnotesize\ttfamily template$<$typename Hasher , uint64\+\_\+t LEAFS\+\_\+N, typename Hash  = Hasher\+::value\+\_\+type, typename Concatenator  = bconcat\+::\+Unified\+Concatenator$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$\+::get\+\_\+layer (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [protected]}}
 
 
 
@@ -165,12 +170,12 @@ pointer to the beginning of the layer and its length (num of hashes)
 \begin{DoxyNote}{Note}
 index of the last layer is equal to the height value O(log\+N) complexity where N is equal to the number of hashes in the tree 
 \end{DoxyNote}
-\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a49fe450451749a2adbbd68676dc57b20}\label{classmerkle_1_1FixedSizeTree_a49fe450451749a2adbbd68676dc57b20}} 
-\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!get\_leafs\_n@{get\_leafs\_n}}
-\index{get\_leafs\_n@{get\_leafs\_n}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_af6d478cdee1df86043d0dfcb416a8f50}\label{classmerkle_1_1FixedSizeTree_af6d478cdee1df86043d0dfcb416a8f50}} 
+\index{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}!get\_leafs\_n@{get\_leafs\_n}}
+\index{get\_leafs\_n@{get\_leafs\_n}!merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}}
 \doxysubsubsection{\texorpdfstring{get\_leafs\_n()}{get\_leafs\_n()}}
-{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
-static constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::get\+\_\+leafs\+\_\+n (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
+{\footnotesize\ttfamily template$<$typename Hasher , uint64\+\_\+t LEAFS\+\_\+N, typename Hash  = Hasher\+::value\+\_\+type, typename Concatenator  = bconcat\+::\+Unified\+Concatenator$>$ \\
+static constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$\+::get\+\_\+leafs\+\_\+n (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
 
 
 
@@ -179,12 +184,12 @@ current num of leaves in the tree
 \begin{DoxyNote}{Note}
 For fixed size class of trees, the function can be static, since it depends only on the class parameters, but not on a specific object 
 \end{DoxyNote}
-\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a10e1e02fd706f8fed5ec947d1af672fb}\label{classmerkle_1_1FixedSizeTree_a10e1e02fd706f8fed5ec947d1af672fb}} 
-\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!get\_proof@{get\_proof}}
-\index{get\_proof@{get\_proof}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a1e83ceba6bae13a495051128cc7c57db}\label{classmerkle_1_1FixedSizeTree_a1e83ceba6bae13a495051128cc7c57db}} 
+\index{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}!get\_proof@{get\_proof}}
+\index{get\_proof@{get\_proof}!merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}}
 \doxysubsubsection{\texorpdfstring{get\_proof()}{get\_proof()}}
-{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::get\+\_\+proof (\begin{DoxyParamCaption}\item[{auto \&\&}]{data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+{\footnotesize\ttfamily template$<$typename Hasher , uint64\+\_\+t LEAFS\+\_\+N, typename Hash  = Hasher\+::value\+\_\+type, typename Concatenator  = bconcat\+::\+Unified\+Concatenator$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$\+::get\+\_\+proof (\begin{DoxyParamCaption}\item[{auto \&\&}]{data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
 
 
 
@@ -203,12 +208,12 @@ if the data was not used to build the tree, an object consisting of default valu
 
 O(log\+N) complexity where N is equal to the number of hashes in the tree 
 \end{DoxyNote}
-\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a999a247f7bc68fd273a5f3d46be6f016}\label{classmerkle_1_1FixedSizeTree_a999a247f7bc68fd273a5f3d46be6f016}} 
-\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!root@{root}}
-\index{root@{root}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a4f71698ce937b5fc840dcd66a5c046b6}\label{classmerkle_1_1FixedSizeTree_a4f71698ce937b5fc840dcd66a5c046b6}} 
+\index{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}!root@{root}}
+\index{root@{root}!merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}}
 \doxysubsubsection{\texorpdfstring{root()}{root()}}
-{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+{\footnotesize\ttfamily template$<$typename Hasher , uint64\+\_\+t LEAFS\+\_\+N, typename Hash  = Hasher\+::value\+\_\+type, typename Concatenator  = bconcat\+::\+Unified\+Concatenator$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$\+::root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
 
 
 
@@ -217,12 +222,12 @@ root of the Merkle tree
 \begin{DoxyReturn}{Returns}
 last (topmost) hash 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a5b81af883488920f0160c465595ae9a0}\label{classmerkle_1_1FixedSizeTree_a5b81af883488920f0160c465595ae9a0}} 
-\index{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}!verify\_proof@{verify\_proof}}
-\index{verify\_proof@{verify\_proof}!merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$@{merkle::FixedSizeTree$<$ HashFunc, LEAFS\_N $>$}}
+\mbox{\Hypertarget{classmerkle_1_1FixedSizeTree_a4a036578d0c54e5ce948fe1ff621f8bc}\label{classmerkle_1_1FixedSizeTree_a4a036578d0c54e5ce948fe1ff621f8bc}} 
+\index{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}!verify\_proof@{verify\_proof}}
+\index{verify\_proof@{verify\_proof}!merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$@{merkle::FixedSizeTree$<$ Hasher, LEAFS\_N, Hash, Concatenator $>$}}
 \doxysubsubsection{\texorpdfstring{verify\_proof()}{verify\_proof()}}
-{\footnotesize\ttfamily template$<$typename Hash\+Func , uint64\+\_\+t LEAFS\+\_\+N$>$ \\
-constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hash\+Func, LEAFS\+\_\+N $>$\+::verify\+\_\+proof (\begin{DoxyParamCaption}\item[{auto \&\&}]{data,  }\item[{auto \&\&}]{proof }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+{\footnotesize\ttfamily template$<$typename Hasher , uint64\+\_\+t LEAFS\+\_\+N, typename Hash  = Hasher\+::value\+\_\+type, typename Concatenator  = bconcat\+::\+Unified\+Concatenator$>$ \\
+constexpr auto \mbox{\hyperlink{classmerkle_1_1FixedSizeTree}{merkle\+::\+Fixed\+Size\+Tree}}$<$ Hasher, LEAFS\+\_\+N, Hash, Concatenator $>$\+::verify\+\_\+proof (\begin{DoxyParamCaption}\item[{auto \&\&}]{data,  }\item[{auto \&\&}]{proof }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
 
 ... \begin{DoxyNote}{Note}
 O(log\+N) complexity where N is equal to the number of hashes in the tree 

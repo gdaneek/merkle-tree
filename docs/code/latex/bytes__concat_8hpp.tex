@@ -1,0 +1,98 @@
+\hypertarget{bytes__concat_8hpp}{}\doxysection{bytes\+\_\+concat.\+hpp File Reference}
+\label{bytes__concat_8hpp}\index{bytes\_concat.hpp@{bytes\_concat.hpp}}
+
+
+Classes are byte concatenation algorithms for different data structures.  
+
+
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$concepts$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+Include dependency graph for bytes\+\_\+concat.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bytes__concat_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{bytes__concat_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classbconcat_1_1TrivialConcatenator}{bconcat\+::\+Trivial\+Concatenator}}
+\begin{DoxyCompactList}\small\item\em performs concatenation of objects with a trivial copy constructor \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classbconcat_1_1UnifiedConcatenator}{bconcat\+::\+Unified\+Concatenator}}
+\begin{DoxyCompactList}\small\item\em concatenate any data structures \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\concept \mbox{\hyperlink{bytes__concat_8hpp_ac66610b6297998bde88c9a64199f35a7}{bconcat\+::\+Iterable}}
+\begin{DoxyCompactList}\small\item\em requires that the container is iterable \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\concept \mbox{\hyperlink{bytes__concat_8hpp_a9914e92fd5c730c78168a92583c8aa1b}{bconcat\+::\+Memcpy\+Copiable}}
+\begin{DoxyCompactList}\small\item\em requires that the container is trivially copiable \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classes are byte concatenation algorithms for different data structures. 
+
+\begin{DoxyAuthor}{Author}
+\href{https://github.com/gdaneek}{\texttt{ https\+://github.\+com/gdaneek}} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+30.\+05.\+2025 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0-\/beta 
+\end{DoxyVersion}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{bytes__concat_8hpp_ac66610b6297998bde88c9a64199f35a7}\label{bytes__concat_8hpp_ac66610b6297998bde88c9a64199f35a7}} 
+\index{bytes\_concat.hpp@{bytes\_concat.hpp}!Iterable@{Iterable}}
+\index{Iterable@{Iterable}!bytes\_concat.hpp@{bytes\_concat.hpp}}
+\doxysubsubsection{\texorpdfstring{Iterable}{Iterable}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+concept bconcat\+::\+Iterable}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= requires(T t) \{}
+\DoxyCodeLine{        \{ std::begin(t) \} -\/> std::input\_iterator;}
+\DoxyCodeLine{        \{ std::end(t) \} -\/> std::sentinel\_for<decltype(std::begin(t))>;}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+requires that the container is iterable 
+
+\mbox{\Hypertarget{bytes__concat_8hpp_a9914e92fd5c730c78168a92583c8aa1b}\label{bytes__concat_8hpp_a9914e92fd5c730c78168a92583c8aa1b}} 
+\index{bytes\_concat.hpp@{bytes\_concat.hpp}!MemcpyCopiable@{MemcpyCopiable}}
+\index{MemcpyCopiable@{MemcpyCopiable}!bytes\_concat.hpp@{bytes\_concat.hpp}}
+\doxysubsubsection{\texorpdfstring{MemcpyCopiable}{MemcpyCopiable}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+concept bconcat\+::\+Memcpy\+Copiable}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= requires(T t)\{}
+\DoxyCodeLine{        \{std::is\_trivially\_copyable\_v<T>\};}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+requires that the container is trivially copiable 
+

@@ -1,0 +1,126 @@
+\hypertarget{merkle__concepts_8hpp}{}\doxysection{merkle\+\_\+concepts.\+hpp File Reference}
+\label{merkle__concepts_8hpp}\index{merkle\_concepts.hpp@{merkle\_concepts.hpp}}
+
+
+Custom concepts for implementing the Merkle tree.  
+
+
+{\ttfamily \#include $<$concepts$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+Include dependency graph for merkle\+\_\+concepts.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{merkle__concepts_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{merkle__concepts_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{merkle__concepts_8hpp_a272d4a61701ab68413b1d5bfa88c943e}\label{merkle__concepts_8hpp_a272d4a61701ab68413b1d5bfa88c943e}} 
+{\footnotesize template$<$typename T $>$ }\\concept {\bfseries merkle\+::\+PODType} = std\+::is\+\_\+trivial\+\_\+v$<$T$>$ \&\& std\+::is\+\_\+standard\+\_\+layout\+\_\+v$<$T$>$
+\item 
+{\footnotesize template$<$typename T $>$ }\\concept {\bfseries merkle\+::\+Has\+Data\+And\+Size}
+\item 
+{\footnotesize template$<$typename T $>$ }\\concept \mbox{\hyperlink{merkle__concepts_8hpp_ac8ba9ba92f126736af316617b67ad980}{merkle\+::\+Contiguous\+Container}} = PODType$<$T$>$ $\vert$$\vert$ Has\+Data\+And\+Size$<$T$>$
+\begin{DoxyCompactList}\small\item\em requires that the container is contiguous \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\concept \mbox{\hyperlink{merkle__concepts_8hpp_a707bc0c2302c3031cb2412f8e815e626}{merkle\+::\+Iterable}}
+\begin{DoxyCompactList}\small\item\em requires that the container is iterable \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\concept \mbox{\hyperlink{merkle__concepts_8hpp_a1da92de9f79ef46ea298506a9dd91fbb}{merkle\+::\+Indexable}}
+\begin{DoxyCompactList}\small\item\em requires that the container is indexable \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Custom concepts for implementing the Merkle tree. 
+
+\begin{DoxyAuthor}{Author}
+\href{https://github.com/gdaneek}{\texttt{ https\+://github.\+com/gdaneek}} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+30.\+05.\+2025 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+1 
+\end{DoxyVersion}
+\begin{DoxySeeAlso}{See also}
+\href{https://github.com/gdaneek/merkle-tree}{\texttt{ https\+://github.\+com/gdaneek/merkle-\/tree}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{merkle__concepts_8hpp_ac8ba9ba92f126736af316617b67ad980}\label{merkle__concepts_8hpp_ac8ba9ba92f126736af316617b67ad980}} 
+\index{merkle\_concepts.hpp@{merkle\_concepts.hpp}!ContiguousContainer@{ContiguousContainer}}
+\index{ContiguousContainer@{ContiguousContainer}!merkle\_concepts.hpp@{merkle\_concepts.hpp}}
+\doxysubsubsection{\texorpdfstring{ContiguousContainer}{ContiguousContainer}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+concept merkle\+::\+Contiguous\+Container = PODType$<$T$>$ $\vert$$\vert$ Has\+Data\+And\+Size$<$T$>$}
+
+
+
+requires that the container is contiguous 
+
+\begin{DoxyNote}{Note}
+continuity means that the container is stored in memory without any padding or breaks 
+\end{DoxyNote}
+\mbox{\Hypertarget{merkle__concepts_8hpp_a1f79968a57caa5cb23edca509dc2a701}\label{merkle__concepts_8hpp_a1f79968a57caa5cb23edca509dc2a701}} 
+\index{merkle\_concepts.hpp@{merkle\_concepts.hpp}!HasDataAndSize@{HasDataAndSize}}
+\index{HasDataAndSize@{HasDataAndSize}!merkle\_concepts.hpp@{merkle\_concepts.hpp}}
+\doxysubsubsection{\texorpdfstring{HasDataAndSize}{HasDataAndSize}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+concept merkle\+::\+Has\+Data\+And\+Size}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= requires(T t) \{}
+\DoxyCodeLine{        \{ t.size() \} -\/> std::integral;}
+\DoxyCodeLine{        \{ t.data() \} -\/> std::convertible\_to<void*>;}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{merkle__concepts_8hpp_a1da92de9f79ef46ea298506a9dd91fbb}\label{merkle__concepts_8hpp_a1da92de9f79ef46ea298506a9dd91fbb}} 
+\index{merkle\_concepts.hpp@{merkle\_concepts.hpp}!Indexable@{Indexable}}
+\index{Indexable@{Indexable}!merkle\_concepts.hpp@{merkle\_concepts.hpp}}
+\doxysubsubsection{\texorpdfstring{Indexable}{Indexable}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+concept merkle\+::\+Indexable}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= requires(T t, \textcolor{keywordtype}{size\_t} i) \{}
+\DoxyCodeLine{        \{ t[i] \};}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+requires that the container is indexable 
+
+\mbox{\Hypertarget{merkle__concepts_8hpp_a707bc0c2302c3031cb2412f8e815e626}\label{merkle__concepts_8hpp_a707bc0c2302c3031cb2412f8e815e626}} 
+\index{merkle\_concepts.hpp@{merkle\_concepts.hpp}!Iterable@{Iterable}}
+\index{Iterable@{Iterable}!merkle\_concepts.hpp@{merkle\_concepts.hpp}}
+\doxysubsubsection{\texorpdfstring{Iterable}{Iterable}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+concept merkle\+::\+Iterable}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= requires(T t) \{}
+\DoxyCodeLine{        \{ std::begin(t) \} -\/> std::input\_iterator;}
+\DoxyCodeLine{        \{ std::end(t) \} -\/> std::sentinel\_for<decltype(std::begin(t))>;}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+requires that the container is iterable 
+

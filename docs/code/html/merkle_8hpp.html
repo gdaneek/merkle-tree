@@ -71,24 +71,26 @@ $(function() {
 
 <p>Several implementations of the Merkle tree.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="concepts_8hh_source.html">concepts.hh</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="utils_8hh_source.html">utils.hh</a>&quot;</code><br />
-<code>#include &lt;algorithm&gt;</code><br />
-<code>#include &lt;iostream&gt;</code><br />
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &quot;<a class="el" href="merkle__utils_8hpp_source.html">merkle_utils.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="bytes__concat_8hpp_source.html">bytes_concat.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for merkle.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="merkle_8hpp__incl.png" border="0" usemap="#amerkle_8hpp" alt=""/></div>
 <map name="amerkle_8hpp" id="amerkle_8hpp">
-<area shape="rect" title="Several implementations of the Merkle tree." alt="" coords="331,5,427,32"/>
-<area shape="rect" href="concepts_8hh.html" title="Custom concepts for implementing the Merkle tree." alt="" coords="147,80,247,107"/>
-<area shape="rect" href="utils_8hh.html" title="auxiliary functions for implementing the Merkle tree" alt="" coords="293,80,363,107"/>
-<area shape="rect" title=" " alt="" coords="388,80,473,107"/>
-<area shape="rect" title=" " alt="" coords="497,80,577,107"/>
-<area shape="rect" title=" " alt="" coords="5,155,85,181"/>
-<area shape="rect" title=" " alt="" coords="110,155,202,181"/>
-<area shape="rect" title=" " alt="" coords="226,155,297,181"/>
-<area shape="rect" title=" " alt="" coords="321,155,377,181"/>
+<area shape="rect" title="Several implementations of the Merkle tree." alt="" coords="137,5,233,32"/>
+<area shape="rect" title=" " alt="" coords="16,80,96,107"/>
+<area shape="rect" href="merkle__utils_8hpp.html" title="Auxiliary functions for implementing the Merkle tree." alt="" coords="120,80,251,107"/>
+<area shape="rect" href="bytes__concat_8hpp.html" title="Classes are byte concatenation algorithms for different data structures." alt="" coords="276,155,412,181"/>
+<area shape="rect" href="merkle__concepts_8hpp.html" title="Custom concepts for implementing the Merkle tree." alt="" coords="85,155,246,181"/>
+<area shape="rect" title=" " alt="" coords="5,229,85,256"/>
+<area shape="rect" title=" " alt="" coords="110,229,202,256"/>
+<area shape="rect" title=" " alt="" coords="226,229,297,256"/>
+<area shape="rect" title=" " alt="" coords="598,229,658,256"/>
+<area shape="rect" title=" " alt="" coords="321,229,377,256"/>
+<area shape="rect" title=" " alt="" coords="401,229,487,256"/>
+<area shape="rect" title=" " alt="" coords="511,229,574,256"/>
 </map>
 </div>
 </div>
@@ -96,10 +98,10 @@ Include dependency graph for merkle.hpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html">merkle::TreeBase&lt; Derived, HashFunc &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1TreeBase.html">merkle::TreeBase&lt; Derived, Hasher, Concatenator &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a base template class for building Merkle trees based on CRTP  <a href="classmerkle_1_1TreeBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1FixedSizeTree.html">merkle::FixedSizeTree&lt; HashFunc, LEAFS_N &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmerkle_1_1FixedSizeTree.html">merkle::FixedSizeTree&lt; Hasher, LEAFS_N, Hash, Concatenator &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">General class of Merkle trees calculated at the compilation stage and trees with a size calculated at the compilation stage.  <a href="classmerkle_1_1FixedSizeTree.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -108,16 +110,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a9ac467055cbf2f68422562eb3972ee18"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="merkle_8hpp.html#a9ac467055cbf2f68422562eb3972ee18">merkle::calc_tree_size</a> (uint64_t leafs_n)</td></tr>
 <tr class="memdesc:a9ac467055cbf2f68422562eb3972ee18"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the number of hashes in a Merkle tree  <a href="merkle_8hpp.html#a9ac467055cbf2f68422562eb3972ee18">More...</a><br /></td></tr>
 <tr class="separator:a9ac467055cbf2f68422562eb3972ee18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27ed5f6bbe0e1dc53e2dfe0167bc62c5"><td class="memTemplParams" colspan="2">template&lt;size_t Size, typename HashFunc &gt; </td></tr>
-<tr class="memitem:a27ed5f6bbe0e1dc53e2dfe0167bc62c5"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="merkle_8hpp.html#a27ed5f6bbe0e1dc53e2dfe0167bc62c5">merkle::make_fs_tree</a> (HashFunc &amp;hash, auto &amp;&amp;... args)</td></tr>
-<tr class="memdesc:a27ed5f6bbe0e1dc53e2dfe0167bc62c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">FixedSize (FS) Merkle trees factory.  <a href="merkle_8hpp.html#a27ed5f6bbe0e1dc53e2dfe0167bc62c5">More...</a><br /></td></tr>
-<tr class="separator:a27ed5f6bbe0e1dc53e2dfe0167bc62c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Several implementations of the Merkle tree. </p>
 <dl class="section author"><dt>Author</dt><dd><a href="https://github.com/gdaneek">https://github.com/gdaneek</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>30.05.2025 </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.1 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a href="https://github.com/gdaneek/merkle-tree">https://github.com/gdaneek/merkle-tree</a> </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a9ac467055cbf2f68422562eb3972ee18"></a>
@@ -152,47 +150,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of hashes in a Merkle tree </dd></dl>
-
-</div>
-</div>
-<a id="a27ed5f6bbe0e1dc53e2dfe0167bc62c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27ed5f6bbe0e1dc53e2dfe0167bc62c5">&#9670;&nbsp;</a></span>make_fs_tree()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;size_t Size, typename HashFunc &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto merkle::make_fs_tree </td>
-          <td>(</td>
-          <td class="paramtype">HashFunc &amp;&#160;</td>
-          <td class="paramname"><em>hash</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">auto &amp;&amp;...&#160;</td>
-          <td class="paramname"><em>args</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>FixedSize (FS) Merkle trees factory. </p>
-<dl class="section return"><dt>Returns</dt><dd>FixedSizeTree instance </dd></dl>
 
 </div>
 </div>

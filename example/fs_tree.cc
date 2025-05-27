@@ -3,20 +3,29 @@
 #include <string>
 #include <vector>
 
+
+struct Hasher {
+    using value_type = uint64_t;
+    constexpr auto operator()(auto&& cont) const -> value_type  {
+        uint64_t hash{};
+        for(auto&& x : cont)
+            hash = (hash * 31) + x;
+
+        return hash;
+    }
+};
+
+using namespace merkle;
+
 int main() {
-
-    auto hasher{[&](const char* c, size_t n) { // tree v1.0 compatible hash lambda for strings
-        std::hash<std::string> hasher;
-        return hasher(std::string(c));
-    }};
-
 
     std::vector<std::string> fnames = {"passwords.db", "users.txt", "raw_data.bin"};
 
-    auto tree = merkle::make_fs_tree<5>(hasher); /* pass also fname to immediate build*/
+    FixedSizeTree<Hasher, 3> tree; /* pass also fnames to immediate build*/
     tree.build(fnames);
 
-    std::cout << std::hex << tree.root() << std::endl;
+
+    std::cout << std::hex << "0x" << tree.root() << std::endl;
 
     return 0;
 

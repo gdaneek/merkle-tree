@@ -1,12 +1,29 @@
+/**
+ *  @file    bytes_concat.hpp
+ *  @brief   Classes are byte concatenation algorithms for different data structures
+ *  @author  https://github.com/gdaneek
+ *  @date    30.05.2025
+ *  @version 1.0-beta
+ */
+
+
 #ifndef BYTES_CONCAT_LIB_HPP
 #define BYTES_CONCAT_LIB_HPP
 
 #include <utility>
 #include <array>
 #include <algorithm>
+#include <cstring>
 
 namespace bconcat {
 
+    /**
+     * @brief performs concatenation of objects with a trivial copy constructor
+     * @details
+     * - based on memcpy for performance
+     * - return std::array of bytes
+     * @note useful for POD types
+     */
     class TrivialConcatenator {
     public:
 
@@ -31,6 +48,9 @@ namespace bconcat {
     #include <type_traits>
 
 
+    /**
+    * @brief requires that the container is iterable
+    */
     template <typename T>
     concept Iterable = requires(T t) {
         { std::begin(t) } -> std::input_iterator;
@@ -38,11 +58,22 @@ namespace bconcat {
     };
 
 
+    /**
+    * @brief requires that the container is trivially copiable
+    */
     template<typename T>
     concept MemcpyCopiable = requires(T t){
         {std::is_trivially_copyable_v<T>};
     };
 
+    /**
+     * @brief concatenate any data structures
+     * @details
+     * - based on std::copy
+     * - works mainly with iterable structures,
+     * otherwise it simply copies the bytes of the structure (necessary for correct processing of char, int, float, etc. types)
+     * @note useful for STL-like containers
+     */
     class UnifiedConcatenator {
     public:
         using value_type = typename std::vector<char>;
@@ -77,6 +108,7 @@ namespace bconcat {
         }
 
     };
+
 
     // TODO: DeepConcatenator
 }

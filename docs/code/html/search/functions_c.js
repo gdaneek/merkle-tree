@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['treebase_55',['TreeBase',['../classmerkle_1_1TreeBase.html#a2261c2ac7d994e7009c77317e262cb86',1,'merkle::TreeBase']]]
+  ['verify_56',['verify',['../classmerkle_1_1TreeBase.html#a4c323c59ad2667c59976437edceec00c',1,'merkle::TreeBase']]],
+  ['verify_5fproof_57',['verify_proof',['../classmerkle_1_1FixedSizeTree.html#a4a036578d0c54e5ce948fe1ff621f8bc',1,'merkle::FixedSizeTree']]]
 ];

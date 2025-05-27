@@ -3,14 +3,13 @@
  *  @brief   Several implementations of the Merkle tree
  *  @author  https://github.com/gdaneek
  *  @date    30.05.2025
- *  @version 1.0
+ *  @version 1.1
  *  @see https://github.com/gdaneek/merkle-tree
  */
 
 
 #pragma once
 
-#include <algorithm>
 #include <iostream> // for << operator
 
 #include "merkle_utils.hpp"
@@ -206,8 +205,10 @@ namespace merkle {
      * @tparam Hasher type of hash function
      * @tparam LEAFS_N  the number of leaves in the tree calculated at the compilation stage
      */
-    template<typename Hasher, uint64_t LEAFS_N, typename Hash = Hasher::value_type, typename Concatenator = bconcat::UnifiedConcatenator>       // TODO: общий файл с конкатенаторами ++, Hash = Hasher::value_t
+    template<typename Hasher, uint64_t LEAFS_N, typename Hash = Hasher::value_type, typename Concatenator = bconcat::UnifiedConcatenator>
     class FixedSizeTree : public TreeBase<FixedSizeTree<Hasher, LEAFS_N, Hash, Concatenator>, Hasher, Concatenator> {
+
+        // TODO: Custom concatenator with support for implicit concatenation while build like in v1.0
 
         using Base = TreeBase<FixedSizeTree<Hasher, LEAFS_N, Hash, Concatenator>, Hasher, Concatenator>;
 

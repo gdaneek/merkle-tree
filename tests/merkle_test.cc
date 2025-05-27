@@ -3,7 +3,7 @@
  * @brief   Tests for Merkle trees
  * @author  https://github.com/gdaneek
  * @date    30.05.2025
- * @version 1.0
+ * @version 1.1
  * @see https://github.com/gdaneek/MerkleTree.git
  */
 
@@ -36,11 +36,8 @@ namespace fs_tree_tests {
 TEST_SUITE("MerkleTree fixed size (FS) implementation tests") {
 
 
-    class Hasher {
-    public:
-
+    struct Hasher {
         using value_type = typename std::array<char, 8>;
-
         constexpr auto operator()(auto&& cont) const -> value_type  {
             union { uint64_t v; char bytes[sizeof(v)]; } hash{};
             for(auto&& x : cont)

@@ -1,0 +1,71 @@
+\hypertarget{merkle__utils_8hpp}{}\doxysection{merkle\+\_\+utils.\+hpp File Reference}
+\label{merkle__utils_8hpp}\index{merkle\_utils.hpp@{merkle\_utils.hpp}}
+
+
+Auxiliary functions for implementing the Merkle tree.  
+
+
+{\ttfamily \#include \char`\"{}merkle\+\_\+concepts.\+hpp\char`\"{}}\newline
+Include dependency graph for merkle\+\_\+utils.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{merkle__utils_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{merkle__utils_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr T \mbox{\hyperlink{merkle__utils_8hpp_ab0cb7128614482e49f01f25ddf94abc7}{merkle\+::ilog2}} (T x)
+\begin{DoxyCompactList}\small\item\em fastest implementation of the base 2 integer algorithm \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{merkle__utils_8hpp_a1757d5c1b2c51afec5dddbd187d1855d}\label{merkle__utils_8hpp_a1757d5c1b2c51afec5dddbd187d1855d}} 
+{\footnotesize template$<$typename T $>$ }\\constexpr T \mbox{\hyperlink{merkle__utils_8hpp_a1757d5c1b2c51afec5dddbd187d1855d}{merkle\+::round\+\_\+to\+\_\+even}} (T in)
+\begin{DoxyCompactList}\small\item\em finds nearest (equal or greater) even number \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Auxiliary functions for implementing the Merkle tree. 
+
+\begin{DoxyAuthor}{Author}
+\href{https://github.com/gdaneek}{\texttt{ https\+://github.\+com/gdaneek}} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+30.\+05.\+2025 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+1 
+\end{DoxyVersion}
+\begin{DoxySeeAlso}{See also}
+\href{https://github.com/gdaneek/merkle-tree}{\texttt{ https\+://github.\+com/gdaneek/merkle-\/tree}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{merkle__utils_8hpp_ab0cb7128614482e49f01f25ddf94abc7}\label{merkle__utils_8hpp_ab0cb7128614482e49f01f25ddf94abc7}} 
+\index{merkle\_utils.hpp@{merkle\_utils.hpp}!ilog2@{ilog2}}
+\index{ilog2@{ilog2}!merkle\_utils.hpp@{merkle\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{ilog2()}{ilog2()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr T merkle\+::ilog2 (\begin{DoxyParamCaption}\item[{T}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+fastest implementation of the base 2 integer algorithm 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & value for which the logarithm is calculated \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}log2(x)\mbox{]} (whole part of the logarithm) 
+\end{DoxyReturn}

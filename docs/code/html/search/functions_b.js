@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['size_54',['size',['../classmerkle_1_1TreeBase.html#ad35655e38316e0d8c9a25ff6e2116c53',1,'merkle::TreeBase']]]
+  ['treebase_55',['TreeBase',['../classmerkle_1_1TreeBase.html#a1a7d2948719d260fdf2098c704268269',1,'merkle::TreeBase']]]
 ];
